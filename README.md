@@ -1,43 +1,94 @@
-# codesnapper
+# 🖼️ Code Snapper
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
+Turn code into beautiful, shareable images — fast.  
+Built with Kotlin + Ktor. Exposes a simple API. No fluff, just code snaps.
 
-Here are some useful links to get you started:
+---
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
+## ✨ What It Does
 
-## Features
+Code Snapper is a backend web service that:
 
-Here's a list of features included in this project:
+- Accepts code through a REST API
+- Generates a syntax-highlighted image
+- Returns the image (PNG or SVG) directly
 
-| Name                                                               | Description                                                                        |
-| --------------------------------------------------------------------|------------------------------------------------------------------------------------ |
-| [Routing](https://start.ktor.io/p/routing)                         | Provides a structured routing DSL                                                  |
-| [Static Content](https://start.ktor.io/p/static-content)           | Serves static files from defined locations                                         |
-| [CORS](https://start.ktor.io/p/cors)                               | Enables Cross-Origin Resource Sharing (CORS)                                       |
-| [Call Logging](https://start.ktor.io/p/call-logging)               | Logs client requests                                                               |
-| [Content Negotiation](https://start.ktor.io/p/content-negotiation) | Provides automatic content conversion according to Content-Type and Accept headers |
+Use it to create code snippet posts, docs, or social media-ready visuals.
 
-## Building & Running
+---
 
-To build or run the project, use one of the following tasks:
+## 🚀 Tech Stack
 
-| Task                          | Description                                                          |
-| -------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`              | Run the tests                                                        |
-| `./gradlew build`             | Build everything                                                     |
-| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
-| `buildImage`                  | Build the docker image to use with the fat JAR                       |
-| `publishImageToLocalRegistry` | Publish the docker image locally                                     |
-| `run`                         | Run the server                                                       |
-| `runDocker`                   | Run using the local docker image                                     |
+- **Kotlin**
+- **Ktor** for the web backend
+- **Gradle (Kotlin DSL)**
+- Image generation with **Java2D** or **headless Chromium** (TBD)
 
-If the server starts successfully, you'll see the following output:
+---
 
+## 📦 API
+
+### `POST /snap`
+
+Send your code, get an image back.
+
+#### Request JSON:
+```json
+{
+  "code": "fun hello() = println(\"Hello\")",
+  "language": "kotlin",
+  "theme": "dark"
+}
 ```
-2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
+
+#### Response:
+- Content-Type: `image/png`
+- Binary image data
+
+Use it in frontends, chatbots, blogs, or anywhere a pretty code image is useful.
+
+---
+
+## 🛠 How to Run (Local Dev)
+
+```bash
+./gradlew run
 ```
 
+The server will start on `http://localhost:8080`.
+
+Use any HTTP client to test:
+```bash
+curl -X POST http://localhost:8080/snap \
+  -H "Content-Type: application/json" \
+  -d '{"code":"fun main() = println(\"Hello\")","language":"kotlin","theme":"dark"}' \
+  --output output.png
+```
+
+---
+
+## 🌱 Roadmap
+
+- [ ] Add theme options (light, dark, etc.)
+- [ ] Support more languages
+- [ ] Add frontend preview (optional)
+- [ ] API key or rate limiting (for public deployment)
+
+---
+
+## 🤖 Dev Notes
+
+See [`CONTEXT.md`](./CONTEXT.md) for AI context and development insights.
+
+---
+
+## 🧑‍💻 Author
+
+Built by [raquezha](https://github.com/raquezha)  
+Crafted with Kotlin and questionable amounts of caffeine ☕
+
+---
+
+## 📄 License
+
+MIT — feel free to fork, improve, or snap away.
