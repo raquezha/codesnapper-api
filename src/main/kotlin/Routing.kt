@@ -26,6 +26,14 @@ fun Application.configureRouting() {
 
         post("/snap") {
             val snapRequest = call.receive<SnapRequest>()
+            if (!isSupportedLanguage(snapRequest.language)) {
+                call.respond(HttpStatusCode.BadRequest, "Unsupported language: ${snapRequest.language}")
+                return@post
+            }
+            if (!isSupportedTheme(snapRequest.theme)) {
+                call.respond(HttpStatusCode.BadRequest, "Unsupported theme: ${snapRequest.theme}")
+                return@post
+            }
             val language = parseSyntaxLanguage(snapRequest.language)
             val theme = parseSyntaxTheme(snapRequest.theme, snapRequest.darkMode)
             val highlights = Highlights.Builder()
@@ -98,3 +106,14 @@ fun escapeHtml(text: String): String = text
     .replace(">", "&gt;")
     .replace("\"", "&quot;")
     .replace("'", "&#39;")
+
+fun isSupportedLanguage(name: String?): Boolean {
+    return SyntaxLanguage.entries.any { it.name.equals(name, ignoreCase = true) }
+}
+
+fun isSupportedTheme(name: String?): Boolean {
+    return when (name?.lowercase()) {
+        "darcula", "monokai", "notepad", "matrix", "pastel", "atom", "atomone", "atom_one" -> true
+        else -> false
+    }
+}
