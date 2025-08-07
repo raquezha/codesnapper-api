@@ -36,8 +36,11 @@ Content-Type: `image/png` or `image/svg+xml`
 
 ## ✅ TODOs
 - [x] Implement POST /snap endpoint in Ktor
-- [ ] Parse JSON payload: code, language, theme
-- [ ] Integrate a syntax highlighter (library or headless browser)
+- [x] Parse JSON payload: code, language, theme
+- [x] Integrate a syntax highlighter (library or headless browser)
+
+> The Highlights library is now integrated in the /snap endpoint. Incoming code, language, theme, and darkMode are parsed and highlighted using Highlights, with support for all available themes and languages. The endpoint currently returns highlight tokens as plain text for testing. Next steps: render as HTML or image.
+
 - [ ] Support multiple languages and themes
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type

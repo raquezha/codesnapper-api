@@ -16,6 +16,7 @@ ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "kotlinx-serialization-json" }
+highlights-jvm = { module = "dev.snipme:highlights-jvm", version = "1.0.0" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
