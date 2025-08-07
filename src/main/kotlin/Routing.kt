@@ -1,6 +1,7 @@
 package net.raquezha
 
 import dev.snipme.highlights.Highlights
+import dev.snipme.highlights.model.CodeHighlight
 import dev.snipme.highlights.model.SyntaxLanguage
 import dev.snipme.highlights.model.SyntaxTheme
 import dev.snipme.highlights.model.SyntaxThemes
@@ -33,8 +34,8 @@ fun Application.configureRouting() {
                 .theme(theme)
                 .build()
             val highlighted = highlights.getHighlights()
-            // For now, just return the highlights as a string for testing
-            call.respondText(highlighted.joinToString("\n"), ContentType.Text.Plain)
+            val html = highlightsToHtml(snapRequest.code, highlighted)
+            call.respondText(html, ContentType.Text.Html)
         }
     }
 }
@@ -56,3 +57,44 @@ fun parseSyntaxTheme(name: String?, darkMode: Boolean = true): SyntaxTheme {
         else -> SyntaxThemes.darcula(darkMode)
     }
 }
+
+fun highlightsToHtml(code: String, highlights: List<CodeHighlight>): String {
+    val sb = StringBuilder()
+    // Sort highlights by start position
+    val sorted = highlights.sortedBy { it.location.start }
+    var last = 0
+    for (highlight in sorted) {
+        val start = highlight.location.start
+        val end = highlight.location.end
+        if (start > last) {
+            sb.append(escapeHtml(code.substring(last, start)))
+        }
+        val color = when (highlight) {
+            is dev.snipme.highlights.model.ColorHighlight -> String.format("#%06X", 0xFFFFFF and highlight.rgb)
+            else -> null
+        }
+        if (color != null) {
+            sb.append("<span style=\"color: $color\">")
+        } else if (highlight is dev.snipme.highlights.model.BoldHighlight) {
+            sb.append("<b>")
+        }
+        sb.append(escapeHtml(code.substring(start, end)))
+        if (color != null) {
+            sb.append("</span>")
+        } else if (highlight is dev.snipme.highlights.model.BoldHighlight) {
+            sb.append("</b>")
+        }
+        last = end
+    }
+    if (last < code.length) {
+        sb.append(escapeHtml(code.substring(last)))
+    }
+    return "<pre style=\"margin:0;padding:0;font-family:monospace;font-size:1em;\">$sb</pre>"
+}
+
+fun escapeHtml(text: String): String = text
+    .replace("&", "&amp;")
+    .replace("<", "&lt;")
+    .replace(">", "&gt;")
+    .replace("\"", "&quot;")
+    .replace("'", "&#39;")

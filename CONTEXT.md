@@ -41,6 +41,7 @@ Content-Type: `image/png` or `image/svg+xml`
 
 > The Highlights library is now integrated in the /snap endpoint. Incoming code, language, theme, and darkMode are parsed and highlighted using Highlights, with support for all available themes and languages. The endpoint currently returns highlight tokens as plain text for testing. Next steps: render as HTML or image.
 
+- [x] Fix: HTML output for syntax highlighting now correctly matches code structure and order (no duplicate or misplaced tokens). The highlightsToHtml function sorts highlights and processes each region only once.
 - [ ] Support multiple languages and themes
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type
