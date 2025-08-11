@@ -22,7 +22,7 @@ The core architectural decisions, problem-solving approach, and project directio
 ## 🧰 Tech Stack
 
 - **Language**: Kotlin
-- **Framework**: Ktor (Web + REST API) 
+- **Framework**: Ktor (Web + REST API)
 - **Build Tool**: Gradle (Kotlin DSL)
 - **Dependency Injection**: Koin 3.5.6
 - **Syntax Highlighting**: Highlights JVM 1.0.0
@@ -37,14 +37,14 @@ The core architectural decisions, problem-solving approach, and project directio
 ```json
 {
   "code": "fun hello() = println(\"Hello World!\")",
-  "language": "kotlin", 
+  "language": "kotlin",
   "theme": "darcula",
   "darkMode": true
 }
 ```
 
 ### Response
-Currently returns syntax-highlighted HTML (`text/html`). 
+Currently returns syntax-highlighted HTML (`text/html`).
 **Next**: Will return images (`image/png` or `image/svg+xml`).
 
 ## ✅ Completed Features
@@ -112,6 +112,63 @@ The following themes are supported (case-insensitive):
 - atom (also accepts atomone, atom_one)
 
 Each theme supports both dark and light mode via the `darkMode` boolean in the request.
+
+## 🧪 Code Quality
+
+This project uses comprehensive code quality tools to maintain high standards:
+
+```bash
+# Code formatting and style
+./gradlew ktlintCheck      # Check code formatting
+./gradlew ktlintFormat     # Auto-fix formatting issues
+
+# Static code analysis
+./gradlew detekt           # Run static analysis for bugs and code smells
+
+# Code coverage
+./gradlew jacocoTestReport # Generate code coverage reports
+
+# Run all quality checks
+./gradlew codeQuality      # Run ktlint, detekt, and JaCoCo together
+```
+
+**Tools included:**
+- **ktlint 1.0.1**: Code formatting and style checking
+- **detekt 1.23.4**: Static analysis for potential bugs and code quality issues
+- **JaCoCo 0.8.11**: Code coverage reporting (compatible with Java 23)
+
+All reports are generated in the `build/reports/` directory with multiple formats (HTML, XML, text).
+
+## 🤖 Automation
+
+This project includes professional automation following industry best practices:
+
+### Pre-commit Hooks
+Automatically runs before every commit:
+- Code formatting with ktlint
+- Static analysis with detekt
+- Unit tests
+- Auto-stages formatted files
+
+### CI/CD Pipeline
+GitHub Actions workflow runs on every PR:
+- **Code Quality**: ktlint and detekt checks
+- **Testing**: Unit tests with coverage reports
+- **Build**: Application build verification
+- **Artifacts**: Uploads reports and build artifacts
+
+### Format on Save
+IntelliJ IDEA configured for:
+- Auto-format on save
+- Optimize imports on the fly
+- EditorConfig integration
+
+### Future Automation (Roadmap)
+- 🔄 **Dependency Updates**: Automated PRs for dependency updates
+- 🛡️ **Security Scanning**: Vulnerability scanning for dependencies
+- 🚀 **Release Automation**: Semantic versioning and automated releases
+- 📚 **Documentation Generation**: Auto-generate API docs and coverage badges
+- 📊 **Performance Monitoring**: Benchmark tests and memory usage tracking
 
 ---
 

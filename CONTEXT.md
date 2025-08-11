@@ -27,7 +27,7 @@ Code Snapper is a web-based Kotlin app that converts code input into beautiful, 
 ```
 
 ### Response
-Returns a syntax-highlighted image of the provided code.  
+Returns a syntax-highlighted image of the provided code.
 Content-Type: `image/png` or `image/svg+xml`
 
 ## 📝 Goals
@@ -56,6 +56,14 @@ Content-Type: `image/png` or `image/svg+xml`
 
 > ✅ **COMPLETED**: Koin DI is fully integrated with Clean Architecture. All dependencies are managed through the `appModule` in `/di/AppModule.kt`. The routing layer uses `inject<HighlightCodeUseCase>()` instead of manual instantiation, making the code more testable and maintainable. Koin is configured with SLF4J logging for better debugging.
 
+- [x] Code Quality Tools (ktlint, detekt, JaCoCo)
+
+> ✅ **COMPLETED**: Comprehensive code quality tools are fully configured and integrated. ktlint 1.0.1 handles code formatting, detekt 1.23.4 performs static analysis, and JaCoCo 0.8.11 provides code coverage reporting. All tools are properly configured for Java 23 compatibility and Ktor project standards. Available via `./gradlew codeQuality` task.
+
+- [x] Pre-commit Hooks & CI/CD Automation
+
+> ✅ **COMPLETED**: Pre-commit hooks automatically run code quality checks before commits. GitHub Actions CI/CD pipeline runs on every PR with code quality checks, tests, and build verification. Format-on-save is configured for IntelliJ IDEA. All automation follows industry best practices from top Kotlin projects.
+
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type
 - [ ] Validate input and handle errors gracefully
@@ -65,11 +73,12 @@ Content-Type: `image/png` or `image/svg+xml`
 - [ ] Build a frontend playground
 - [ ] Add pastebin-like history
 
-## 🌱 Future Features (Nice to have)
-- Download link or preview URL
-- Rate limiting or usage tracking
-- Frontend playground (optional)
-- Pastebin-like history (temporary or persistent)
+## 🔮 Future Automation Features
+- [ ] Dependency Updates: Automated PRs for dependency updates
+- [ ] Security Scanning: Vulnerability scanning for dependencies
+- [ ] Release Automation: Semantic versioning and automated releases
+- [ ] Documentation Generation: Auto-generate API docs and code coverage badges
+- [ ] Performance Monitoring: Benchmark tests and memory usage tracking
 
 ## 🤖 AI Notes
 Use this file as context when writing, refactoring, or generating features. Always keep the API shape consistent and make image output the core priority.
@@ -88,5 +97,31 @@ This project follows Clean Architecture principles for maintainability and testa
 
 **Dependency Injection with Koin:**
 All dependencies are managed through Koin DI container. The `appModule` defines singleton instances for services and use cases. Controllers use `inject<T>()` to receive dependencies, ensuring loose coupling and testability.
+
+## 🧪 Code Quality
+
+This project includes comprehensive code quality tools with the following Gradle tasks:
+
+```bash
+# Code formatting and style
+./gradlew ktlintCheck      # Check code formatting
+./gradlew ktlintFormat     # Auto-fix formatting issues
+
+# Static code analysis
+./gradlew detekt           # Run static analysis for bugs and code smells
+
+# Code coverage
+./gradlew jacocoTestReport # Generate code coverage reports
+
+# Run all quality checks
+./gradlew codeQuality      # Run ktlint, detekt, and JaCoCo together
+```
+
+**Tools configured:**
+- **ktlint 1.0.1**: Code formatting and style checking
+- **detekt 1.23.4**: Static analysis for potential bugs and code quality issues
+- **JaCoCo 0.8.11**: Code coverage reporting (compatible with Java 23)
+
+Reports are generated in `build/reports/` directory with HTML, XML, and text formats.
 
 This separation ensures the core logic is independent of frameworks and easy to test, extend, or swap out. See the codebase for concrete examples.

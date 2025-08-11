@@ -16,11 +16,12 @@ import org.koin.dsl.module
  * This follows the dependency inversion principle where concrete implementations
  * are injected into interfaces, making the code testable and flexible.
  */
-val appModule = module {
+val appModule =
+    module {
 
-    // Infrastructure layer - Concrete implementations
-    single<CodeHighlighterService> { HighlightsCodeHighlighterService() }
+        // Infrastructure layer - Concrete implementations
+        single<CodeHighlighterService> { HighlightsCodeHighlighterService() }
 
-    // Application layer - Use cases
-    single { HighlightCodeUseCase(get()) }
-}
+        // Application layer - Use cases
+        single { HighlightCodeUseCase(get()) }
+    }

@@ -23,15 +23,16 @@ class HighlightsCodeHighlighterService : CodeHighlighterService {
         val language = parseSyntaxLanguage(snippet.language)
         val theme = parseSyntaxTheme(snippet.theme, snippet.darkMode)
 
-        val highlights = Highlights.Builder()
-            .theme(theme)
-            .language(language)
-            .code(snippet.code)
-            .build()
+        val highlights =
+            Highlights.Builder()
+                .theme(theme)
+                .language(language)
+                .code(snippet.code)
+                .build()
 
         return HighlightedCode(
             code = snippet.code,
-            highlights = highlights.getHighlights()
+            highlights = highlights.getHighlights(),
         )
     }
 }

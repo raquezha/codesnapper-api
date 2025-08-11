@@ -1,6 +1,5 @@
 package net.raquezha.codesnapper
 
-import net.raquezha.codesnapper.controller.SnapRequest
 import dev.snipme.highlights.model.BoldHighlight
 import dev.snipme.highlights.model.CodeHighlight
 import dev.snipme.highlights.model.ColorHighlight
@@ -13,10 +12,13 @@ import io.ktor.server.http.content.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import net.raquezha.codesnapper.controller.SnapRequest
 import net.raquezha.codesnapper.domain.model.CodeSnippet
 import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
 import org.koin.ktor.ext.inject
+import java.util.Locale
 
+private const val RGB_MASK = 0xFFFFFF
 
 fun Application.configureRouting() {
     val highlightCodeUseCase by inject<HighlightCodeUseCase>()
@@ -37,12 +39,13 @@ fun Application.configureRouting() {
                 call.respond(HttpStatusCode.BadRequest, "Unsupported theme: ${snapRequest.theme}")
                 return@post
             }
-            val snippet = CodeSnippet(
-                code = snapRequest.code,
-                language = snapRequest.language,
-                theme = snapRequest.theme,
-                darkMode = snapRequest.darkMode
-            )
+            val snippet =
+                CodeSnippet(
+                    code = snapRequest.code,
+                    language = snapRequest.language,
+                    theme = snapRequest.theme,
+                    darkMode = snapRequest.darkMode,
+                )
             val highlighted = highlightCodeUseCase.execute(snippet)
             val html = highlightsToHtml(highlighted.code, highlighted.highlights)
             call.respondText(html, ContentType.Text.Html)
@@ -56,7 +59,10 @@ fun parseSyntaxLanguage(name: String?): SyntaxLanguage {
     } ?: SyntaxLanguage.KOTLIN
 }
 
-fun parseSyntaxTheme(name: String?, darkMode: Boolean = true): SyntaxTheme {
+fun parseSyntaxTheme(
+    name: String?,
+    darkMode: Boolean = true,
+): SyntaxTheme {
     return when (name?.lowercase()) {
         "darcula" -> SyntaxThemes.darcula(darkMode)
         "monokai" -> SyntaxThemes.monokai(darkMode)
@@ -68,7 +74,10 @@ fun parseSyntaxTheme(name: String?, darkMode: Boolean = true): SyntaxTheme {
     }
 }
 
-fun highlightsToHtml(code: String, highlights: List<CodeHighlight>): String {
+fun highlightsToHtml(
+    code: String,
+    highlights: List<CodeHighlight>,
+): String {
     val sb = StringBuilder()
     // Sort highlights by start position
     val sorted = highlights.sortedBy { it.location.start }
@@ -79,10 +88,11 @@ fun highlightsToHtml(code: String, highlights: List<CodeHighlight>): String {
         if (start > last) {
             sb.append(escapeHtml(code.substring(last, start)))
         }
-        val color = when (highlight) {
-            is ColorHighlight -> String.format("#%06X", 0xFFFFFF and highlight.rgb)
-            else -> null
-        }
+        val color =
+            when (highlight) {
+                is ColorHighlight -> String.format(Locale.US, "#%06X", RGB_MASK and highlight.rgb)
+                else -> null
+            }
         if (color != null) {
             sb.append("<span style=\"color: $color\">")
         } else if (highlight is BoldHighlight) {
@@ -102,12 +112,13 @@ fun highlightsToHtml(code: String, highlights: List<CodeHighlight>): String {
     return "<pre style=\"margin:0;padding:0;font-family:monospace;font-size:1em;\">$sb</pre>"
 }
 
-fun escapeHtml(text: String): String = text
-    .replace("&", "&amp;")
-    .replace("<", "&lt;")
-    .replace(">", "&gt;")
-    .replace("\"", "&quot;")
-    .replace("'", "&#39;")
+fun escapeHtml(text: String): String =
+    text
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("\"", "&quot;")
+        .replace("'", "&#39;")
 
 fun isSupportedLanguage(name: String?): Boolean {
     return SyntaxLanguage.entries.any { it.name.equals(name, ignoreCase = true) }

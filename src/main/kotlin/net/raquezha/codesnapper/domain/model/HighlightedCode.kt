@@ -4,5 +4,5 @@ import dev.snipme.highlights.model.CodeHighlight
 
 data class HighlightedCode(
     val code: String,
-    val highlights: List<CodeHighlight>
+    val highlights: List<CodeHighlight>,
 )
