@@ -1,7 +1,10 @@
 package net.raquezha.codesnapper.di
 
 import net.raquezha.codesnapper.domain.service.CodeHighlighterService
+import net.raquezha.codesnapper.domain.service.ImageRenderingService
 import net.raquezha.codesnapper.infrastructure.HighlightsCodeHighlighterService
+import net.raquezha.codesnapper.infrastructure.Java2DImageRenderer
+import net.raquezha.codesnapper.usecase.GenerateCodeImageUseCase
 import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
 import org.koin.dsl.module
 
@@ -21,7 +24,9 @@ val appModule =
 
         // Infrastructure layer - Concrete implementations
         single<CodeHighlighterService> { HighlightsCodeHighlighterService() }
+        single<ImageRenderingService> { Java2DImageRenderer() }
 
         // Application layer - Use cases
         single { HighlightCodeUseCase(get()) }
+        single { GenerateCodeImageUseCase(get(), get()) }
     }

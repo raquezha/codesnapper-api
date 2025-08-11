@@ -14,14 +14,14 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import net.raquezha.codesnapper.controller.SnapRequest
 import net.raquezha.codesnapper.domain.model.CodeSnippet
-import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
+import net.raquezha.codesnapper.usecase.GenerateCodeImageUseCase
 import org.koin.ktor.ext.inject
 import java.util.Locale
 
 private const val RGB_MASK = 0xFFFFFF
 
 fun Application.configureRouting() {
-    val highlightCodeUseCase by inject<HighlightCodeUseCase>()
+    val generateCodeImageUseCase by inject<GenerateCodeImageUseCase>()
     routing {
         get("/") {
             call.respondText("Hello World!")
@@ -46,9 +46,10 @@ fun Application.configureRouting() {
                     theme = snapRequest.theme,
                     darkMode = snapRequest.darkMode,
                 )
-            val highlighted = highlightCodeUseCase.execute(snippet)
-            val html = highlightsToHtml(highlighted.code, highlighted.highlights)
-            call.respondText(html, ContentType.Text.Html)
+
+            // Generate PNG image instead of HTML
+            val imageBytes = generateCodeImageUseCase.execute(snippet)
+            call.respondBytes(imageBytes, ContentType.Image.PNG)
         }
     }
 }
