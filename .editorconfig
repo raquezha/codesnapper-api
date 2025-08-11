@@ -12,7 +12,7 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 max_line_length = 120
-disabled_rules = no-wildcard-imports
+ktlint_standard_no-wildcard-imports = disabled
 
 [*.{md,yml,yaml}]
 indent_style = space
