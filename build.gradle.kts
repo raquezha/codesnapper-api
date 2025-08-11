@@ -53,6 +53,17 @@ ktlint {
     outputToConsole.set(true)
     outputColorName.set("RED")
     ignoreFailures.set(false)
+    filter {
+        exclude("**/generated/**")
+    }
+}
+
+tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask>().configureEach {
+    exclude("**/generated/**")
+}
+
+tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.KtLintFormatTask>().configureEach {
+    exclude("**/generated/**")
 }
 
 // detekt - Static code analysis
