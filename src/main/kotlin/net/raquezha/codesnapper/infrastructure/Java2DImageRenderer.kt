@@ -145,7 +145,7 @@ class Java2DImageRenderer : ImageRenderingService {
         context: RenderContext,
         text: String,
     ): Int {
-        context.graphics.color = Color.WHITE // Default text color
+        context.graphics.color = parseColor(context.config.textColor)
         return renderText(context, text)
     }
 
@@ -158,10 +158,10 @@ class Java2DImageRenderer : ImageRenderingService {
         when (highlight) {
             is ColorHighlight -> context.graphics.color = Color(highlight.rgb)
             is BoldHighlight -> {
-                context.graphics.color = Color.WHITE
+                context.graphics.color = parseColor(context.config.textColor)
                 context.graphics.font = context.graphics.font.deriveFont(Font.BOLD)
             }
-            else -> context.graphics.color = Color.WHITE
+            else -> context.graphics.color = parseColor(context.config.textColor)
         }
 
         val result = renderText(context, text)
@@ -185,6 +185,7 @@ class Java2DImageRenderer : ImageRenderingService {
             if (char == '\n') {
                 x = context.config.padding
                 y += (context.fontMetrics.height * context.config.lineHeight).toInt()
+                context.currentY = y
             } else {
                 context.graphics.drawString(char.toString(), x, y)
                 x += context.fontMetrics.charWidth(char)
@@ -202,13 +203,13 @@ class Java2DImageRenderer : ImageRenderingService {
                     when (hex.length) {
                         HEX_COLOR_LENGTH_6 -> Color(Integer.parseInt(hex, HEX_RADIX))
                         HEX_COLOR_LENGTH_8 -> Color(Integer.parseUnsignedInt(hex, HEX_RADIX), true)
-                        else -> Color.BLACK
+                        else -> Color.WHITE
                     }
                 }
-                else -> Color.BLACK
+                else -> Color.WHITE
             }
-        } catch (ignored: NumberFormatException) {
-            Color.BLACK
+        } catch (e: NumberFormatException) {
+            Color.WHITE
         }
     }
 

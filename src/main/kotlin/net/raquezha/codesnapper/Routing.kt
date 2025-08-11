@@ -47,8 +47,10 @@ fun Application.configureRouting() {
                     darkMode = snapRequest.darkMode,
                 )
 
-            // Generate PNG image instead of HTML
+            // Generate PNG image
             val imageBytes = generateCodeImageUseCase.execute(snippet)
+
+            // Return PNG image with correct content type
             call.respondBytes(imageBytes, ContentType.Image.PNG)
         }
     }

@@ -9,24 +9,18 @@ import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
 import org.koin.dsl.module
 
 /**
- * Koin Dependency Injection Module
+ * AppModule
  *
- * Defines all the dependencies for the Clean Architecture layers:
- * - Infrastructure implementations (services)
- * - Use cases (application layer)
- * - Domain services (interfaces)
- *
- * This follows the dependency inversion principle where concrete implementations
- * are injected into interfaces, making the code testable and flexible.
+ * Koin dependency injection configuration for Code Snapper.
+ * Defines how services and use cases are instantiated and wired together.
  */
 val appModule =
     module {
-
-        // Infrastructure layer - Concrete implementations
+        // Services - Infrastructure implementations
         single<CodeHighlighterService> { HighlightsCodeHighlighterService() }
         single<ImageRenderingService> { Java2DImageRenderer() }
 
-        // Application layer - Use cases
+        // Use Cases - Application layer
         single { HighlightCodeUseCase(get()) }
         single { GenerateCodeImageUseCase(get(), get()) }
     }
