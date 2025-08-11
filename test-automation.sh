@@ -13,8 +13,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-SERVER_PORT=8080
-SERVER_URL="http://localhost:$SERVER_PORT"
+SERVER_PORT=8081
+SERVER_URL="http://127.0.0.1:$SERVER_PORT"
 TEST_DIR="docs/testing"
 OUTPUT_DIR="$TEST_DIR/generated"
 SERVER_PID=""

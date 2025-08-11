@@ -92,6 +92,27 @@ class MaterialDesignValidator {
         // Report formatting
         private const val REPORT_SEPARATOR_LENGTH = 50
 
+        // Material Design 3 Typography Scale
+        private val MD3_TYPOGRAPHY_SCALE =
+            mapOf(
+                "headline-large" to 32,
+                "headline-medium" to 28,
+                "headline-small" to 24,
+                "title-large" to 22,
+                "title-medium" to 16,
+                "title-small" to 14,
+                "body-large" to 16,
+                "body-medium" to 14,
+                "body-small" to 12,
+                "label-large" to 14,
+                "label-medium" to 12,
+                "label-small" to 11,
+            )
+
+        // WCAG AA contrast ratio requirements
+        private const val MIN_CONTRAST_RATIO_NORMAL = 4.5
+        private const val MIN_CONTRAST_RATIO_LARGE = 3.0
+
         // Material Design 3 color tokens (dark theme)
         private val MD3_SURFACE_DARK = Color(16, 20, 24)
         private val MD3_ON_SURFACE_DARK = Color(230, 225, 229)
