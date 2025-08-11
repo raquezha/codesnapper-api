@@ -61,26 +61,36 @@ class MaterialDesignValidator {
         private const val MD3_CORNER_RADIUS_MEDIUM = 8
         private const val MD3_CORNER_RADIUS_SMALL = 4
 
-        // Material Design 3 Typography Scale
-        private val MD3_TYPOGRAPHY_SCALE =
-            mapOf(
-                "headline-large" to 32,
-                "headline-medium" to 28,
-                "headline-small" to 24,
-                "title-large" to 22,
-                "title-medium" to 16,
-                "title-small" to 14,
-                "body-large" to 16,
-                "body-medium" to 14,
-                "body-small" to 12,
-                "label-large" to 14,
-                "label-medium" to 12,
-                "label-small" to 11,
-            )
+        // Scoring constants
+        private const val PERFECT_SCORE = 100
+        private const val GRID_PENALTY = 15
+        private const val CORNER_PENALTY = 10
+        private const val TYPOGRAPHY_PENALTY = 20
+        private const val COLOR_PENALTY = 25
+        private const val RECOMMENDATION_THRESHOLD = 90
+        private const val COMPLIANCE_THRESHOLD = 80
 
-        // WCAG AA contrast ratio requirements
-        private const val MIN_CONTRAST_RATIO_NORMAL = 4.5
-        private const val MIN_CONTRAST_RATIO_LARGE = 3.0
+        // Test data constants
+        private const val TEST_CORNER_RADIUS = 12
+        private const val TEST_FONT_SIZE = 16
+        private const val TEST_GRID_UNIT = 8
+        private val TEST_MARGINS = listOf(16, 24, 32)
+        private val TEST_PADDINGS = listOf(8, 16, 24)
+
+        // Color calculation constants
+        private const val CONTRAST_OFFSET = 0.05
+        private const val RGB_MAX = 255.0
+        private const val SRGB_THRESHOLD = 0.03928
+        private const val SRGB_DIVISOR = 12.92
+        private const val SRGB_OFFSET = 0.055
+        private const val SRGB_DIVISOR_2 = 1.055
+        private const val SRGB_EXPONENT = 2.4
+        private const val LUMINANCE_RED = 0.2126
+        private const val LUMINANCE_GREEN = 0.7152
+        private const val LUMINANCE_BLUE = 0.0722
+
+        // Report formatting
+        private const val REPORT_SEPARATOR_LENGTH = 50
 
         // Material Design 3 color tokens (dark theme)
         private val MD3_SURFACE_DARK = Color(16, 20, 24)
@@ -101,7 +111,7 @@ class MaterialDesignValidator {
     fun validateImageBuffered(image: BufferedImage): ValidationResult {
         val issues = mutableListOf<String>()
         val recommendations = mutableListOf<String>()
-        var score = 100
+        var score = PERFECT_SCORE
 
         val metrics = extractMetrics(image)
 
@@ -109,39 +119,39 @@ class MaterialDesignValidator {
         val gridValidation = validateGridSystem(metrics.spacing)
         if (!gridValidation.first) {
             issues.add("Grid system not aligned to 8dp: ${gridValidation.second}")
-            score -= 15
+            score -= GRID_PENALTY
         }
 
         // Validate corner radius
         val cornerValidation = validateCornerRadius(metrics.cornerRadius)
         if (!cornerValidation.first) {
             issues.add("Corner radius not Material Design compliant: ${cornerValidation.second}")
-            score -= 10
+            score -= CORNER_PENALTY
         }
 
         // Validate typography
         val typographyValidation = validateTypography(metrics.typography)
         if (!typographyValidation.first) {
             issues.add("Typography not Material Design compliant: ${typographyValidation.second}")
-            score -= 20
+            score -= TYPOGRAPHY_PENALTY
         }
 
         // Validate colors and contrast
         val colorValidation = validateColors(metrics.colors)
         if (!colorValidation.first) {
             issues.add("Color scheme issues: ${colorValidation.second}")
-            score -= 25
+            score -= COLOR_PENALTY
         }
 
         // Generate recommendations
-        if (score < 90) {
+        if (score < RECOMMENDATION_THRESHOLD) {
             recommendations.add("Consider using Material Design 3 color tokens")
             recommendations.add("Ensure all spacing follows 8dp grid system")
             recommendations.add("Use Material Design typography scale")
         }
 
         return ValidationResult(
-            isCompliant = score >= 80,
+            isCompliant = score >= COMPLIANCE_THRESHOLD,
             issues = issues,
             recommendations = recommendations,
             score = maxOf(0, score),
@@ -153,13 +163,13 @@ class MaterialDesignValidator {
         // you'd analyze the actual image pixels to detect these metrics
         return MaterialDesignMetrics(
             // Detected corner radius
-            cornerRadius = 12,
+            cornerRadius = TEST_CORNER_RADIUS,
             // Detected margins
-            margins = listOf(16, 24, 32),
+            margins = TEST_MARGINS,
             typography =
                 TypographyMetrics(
                     fontFamily = "Roboto",
-                    fontSize = 16,
+                    fontSize = TEST_FONT_SIZE,
                     fontWeight = "Regular",
                     lineHeight = 1.5f,
                 ),
@@ -173,9 +183,9 @@ class MaterialDesignValidator {
                 ),
             spacing =
                 SpacingMetrics(
-                    gridUnit = 8,
-                    margins = listOf(16, 24, 32),
-                    paddings = listOf(8, 16, 24),
+                    gridUnit = TEST_GRID_UNIT,
+                    margins = TEST_MARGINS,
+                    paddings = TEST_PADDINGS,
                 ),
         )
     }
@@ -251,31 +261,38 @@ class MaterialDesignValidator {
         val lighter = maxOf(l1, l2)
         val darker = minOf(l1, l2)
 
-        return (lighter + 0.05) / (darker + 0.05)
+        return (lighter + CONTRAST_OFFSET) / (darker + CONTRAST_OFFSET)
     }
 
     private fun getRelativeLuminance(color: Color): Double {
-        val r = color.red / 255.0
-        val g = color.green / 255.0
-        val b = color.blue / 255.0
+        val r = color.red / RGB_MAX
+        val g = color.green / RGB_MAX
+        val b = color.blue / RGB_MAX
 
         fun sRGBtoLin(c: Double): Double {
-            return if (c <= 0.03928) c / 12.92 else Math.pow((c + 0.055) / 1.055, 2.4)
+            return if (c <= SRGB_THRESHOLD) {
+                c / SRGB_DIVISOR
+            } else {
+                Math.pow(
+                    (c + SRGB_OFFSET) / SRGB_DIVISOR_2,
+                    SRGB_EXPONENT,
+                )
+            }
         }
 
-        return 0.2126 * sRGBtoLin(r) + 0.7152 * sRGBtoLin(g) + 0.0722 * sRGBtoLin(b)
+        return LUMINANCE_RED * sRGBtoLin(r) + LUMINANCE_GREEN * sRGBtoLin(g) + LUMINANCE_BLUE * sRGBtoLin(b)
     }
 
     fun generateComplianceReport(results: List<Pair<String, ValidationResult>>): String {
         val report = StringBuilder()
         report.appendLine("Material Design Compliance Report")
-        report.appendLine("=".repeat(50))
+        report.appendLine("=".repeat(REPORT_SEPARATOR_LENGTH))
         report.appendLine()
 
         var totalScore = 0
         results.forEach { (testName, result) ->
             report.appendLine("Test: $testName")
-            report.appendLine("Score: ${result.score}/100")
+            report.appendLine("Score: ${result.score}/$PERFECT_SCORE")
             report.appendLine("Compliant: ${if (result.isCompliant) "✅ YES" else "❌ NO"}")
 
             if (result.issues.isNotEmpty()) {
@@ -297,7 +314,7 @@ class MaterialDesignValidator {
         }
 
         val avgScore = if (results.isNotEmpty()) totalScore / results.size else 0
-        report.appendLine("Overall Compliance Score: $avgScore/100")
+        report.appendLine("Overall Compliance Score: $avgScore/$PERFECT_SCORE")
 
         return report.toString()
     }

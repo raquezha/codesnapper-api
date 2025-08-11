@@ -8,12 +8,12 @@ import kotlin.test.assertEquals
 
 class ApplicationTest {
     @Test
-    fun testRoot() =
+    fun testHealthCheck() =
         testApplication {
             application {
                 module()
             }
-            client.get("/").apply {
+            client.get("/health").apply {
                 assertEquals(HttpStatusCode.OK, status)
             }
         }
