@@ -39,12 +39,17 @@ Content-Type: `image/png` or `image/svg+xml`
 - [x] Parse JSON payload: code, language, theme
 - [x] Integrate a syntax highlighter (library or headless browser)
 
-> The Highlights library is now integrated in the /snap endpoint. Incoming code, language, theme, and darkMode are parsed and highlighted using Highlights, with support for all available themes and languages. The endpoint currently returns highlight tokens as plain text for testing. Next steps: render as HTML or image.
+> ✅ **COMPLETED**: The Highlights library is fully integrated in the /snap endpoint. Incoming code, language, theme, and darkMode are parsed and highlighted using the correct Highlights Builder API. The HighlightsCodeHighlighterService now produces real syntax highlight tokens (no longer a dummy implementation) and returns properly formatted HTML with color styling.
 
 - [x] Fix: HTML output for syntax highlighting now correctly matches code structure and order (no duplicate or misplaced tokens). The highlightsToHtml function sorts highlights and processes each region only once.
 - [x] Support multiple languages and themes
 
-> Supported languages and themes are now documented in README.md. The /snap endpoint validates both fields and returns HTTP 400 for unsupported values, ensuring robust API behavior.
+> ✅ **COMPLETED**: Supported languages and themes are documented in README.md. The /snap endpoint validates both fields and returns HTTP 400 for unsupported values, ensuring robust API behavior. All utility functions (parseSyntaxLanguage, parseSyntaxTheme) are now properly utilized.
+
+- [x] Clean Architecture implementation completed
+
+> ✅ **COMPLETED**: All layers are properly implemented - domain models (CodeSnippet, HighlightedCode), service interfaces (CodeHighlighterService), use cases (HighlightCodeUseCase), infrastructure (HighlightsCodeHighlighterService), and controllers (SnapRequest). The HighlightsCodeHighlighterService now uses the real Highlights library API instead of returning empty lists.
+
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type
 - [ ] Validate input and handle errors gracefully
@@ -62,3 +67,16 @@ Content-Type: `image/png` or `image/svg+xml`
 
 ## 🤖 AI Notes
 Use this file as context when writing, refactoring, or generating features. Always keep the API shape consistent and make image output the core priority.
+
+## 🏛️ Architecture
+
+This project follows Clean Architecture principles for maintainability and testability:
+
+- **domain/model/**: Core business models (e.g., CodeSnippet, HighlightedCode)
+- **domain/service/**: Business logic interfaces (e.g., CodeHighlighterService)
+- **usecase/**: Application-specific use cases (e.g., HighlightCodeUseCase)
+- **infrastructure/**: Implementations of interfaces, integrations (e.g., HighlightsCodeHighlighterService)
+- **adapter/controller/**: HTTP layer, DTOs (e.g., SnapRequest)
+- **Routing.kt**: Ktor routing/controllers, delegates to use cases
+
+This separation ensures the core logic is independent of frameworks and easy to test, extend, or swap out. See the codebase for concrete examples.

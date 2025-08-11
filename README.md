@@ -1,14 +1,44 @@
-# 🖼️ Code Snapper — TODOs
+# 🖼️ Code Snapper
 
-## Core Features
+A web-based Kotlin service that converts code snippets into beautiful, syntax-highlighted images. Built with Ktor and following Clean Architecture principles.
 
-- [ ] Implement POST /snap endpoint in Ktor
-- [ ] Parse JSON payload: code, language, theme
-- [ ] Integrate a syntax highlighter (library or headless browser)
-- [ ] Support multiple languages and themes
+## 🚀 Current Status
+
+✅ **Syntax Highlighting Complete**: The `/snap` endpoint fully works with real syntax highlighting using the Highlights library. It accepts code, language, theme, and darkMode parameters and returns colorized HTML.
+
+## 📦 API
+
+### Endpoint
+`POST /snap`
+
+### Request
+```json
+{
+  "code": "fun hello() = println(\"Hello World!\")",
+  "language": "kotlin", 
+  "theme": "darcula",
+  "darkMode": true
+}
+```
+
+### Response
+Currently returns syntax-highlighted HTML (`text/html`). 
+**Next**: Will return images (`image/png` or `image/svg+xml`).
+
+## ✅ Completed Features
+
+- [x] POST /snap endpoint implementation
+- [x] JSON payload parsing (code, language, theme, darkMode)
+- [x] Highlights library integration with real syntax highlighting
+- [x] Multiple language and theme support with validation
+- [x] Clean Architecture implementation (domain/usecase/infrastructure layers)
+- [x] HTML output with proper color styling
+- [x] Input validation and error handling for unsupported languages/themes
+
+## 🎯 Next Priorities
+
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type
-- [ ] Validate input and handle errors gracefully
 - [ ] Add unit and integration tests for the endpoint
 
 ## Optional Enhancements

@@ -1,7 +1,9 @@
-package net.raquezha
+package net.raquezha.codesnapper
 
-import dev.snipme.highlights.Highlights
+import net.raquezha.codesnapper.controller.SnapRequest
+import dev.snipme.highlights.model.BoldHighlight
 import dev.snipme.highlights.model.CodeHighlight
+import dev.snipme.highlights.model.ColorHighlight
 import dev.snipme.highlights.model.SyntaxLanguage
 import dev.snipme.highlights.model.SyntaxTheme
 import dev.snipme.highlights.model.SyntaxThemes
@@ -11,12 +13,14 @@ import io.ktor.server.http.content.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.serialization.Serializable
+import net.raquezha.codesnapper.domain.model.CodeSnippet
+import net.raquezha.codesnapper.infrastructure.HighlightsCodeHighlighterService
+import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
 
-@Serializable
-data class SnapRequest(val code: String, val language: String, val theme: String, val darkMode: Boolean = true)
 
 fun Application.configureRouting() {
+    val highlighterService = HighlightsCodeHighlighterService()
+    val highlightCodeUseCase = HighlightCodeUseCase(highlighterService)
     routing {
         get("/") {
             call.respondText("Hello World!")
@@ -34,15 +38,14 @@ fun Application.configureRouting() {
                 call.respond(HttpStatusCode.BadRequest, "Unsupported theme: ${snapRequest.theme}")
                 return@post
             }
-            val language = parseSyntaxLanguage(snapRequest.language)
-            val theme = parseSyntaxTheme(snapRequest.theme, snapRequest.darkMode)
-            val highlights = Highlights.Builder()
-                .code(snapRequest.code)
-                .language(language)
-                .theme(theme)
-                .build()
-            val highlighted = highlights.getHighlights()
-            val html = highlightsToHtml(snapRequest.code, highlighted)
+            val snippet = CodeSnippet(
+                code = snapRequest.code,
+                language = snapRequest.language,
+                theme = snapRequest.theme,
+                darkMode = snapRequest.darkMode
+            )
+            val highlighted = highlightCodeUseCase.execute(snippet)
+            val html = highlightsToHtml(highlighted.code, highlighted.highlights)
             call.respondText(html, ContentType.Text.Html)
         }
     }
@@ -78,18 +81,18 @@ fun highlightsToHtml(code: String, highlights: List<CodeHighlight>): String {
             sb.append(escapeHtml(code.substring(last, start)))
         }
         val color = when (highlight) {
-            is dev.snipme.highlights.model.ColorHighlight -> String.format("#%06X", 0xFFFFFF and highlight.rgb)
+            is ColorHighlight -> String.format("#%06X", 0xFFFFFF and highlight.rgb)
             else -> null
         }
         if (color != null) {
             sb.append("<span style=\"color: $color\">")
-        } else if (highlight is dev.snipme.highlights.model.BoldHighlight) {
+        } else if (highlight is BoldHighlight) {
             sb.append("<b>")
         }
         sb.append(escapeHtml(code.substring(start, end)))
         if (color != null) {
             sb.append("</span>")
-        } else if (highlight is dev.snipme.highlights.model.BoldHighlight) {
+        } else if (highlight is BoldHighlight) {
             sb.append("</b>")
         }
         last = end
