@@ -7,14 +7,20 @@ package net.raquezha.codesnapper.domain.model
  * Controls visual appearance, layout, and styling of the generated PNG images.
  */
 data class ImageConfiguration(
-    val width: Int = 1200,
-    val height: Int = 800,
+    val width: Int = 0, // 0 = auto-size based on content
+    val height: Int = 0, // 0 = auto-size based on content
     val padding: Int = 40,
-    val fontSize: Int = 16,
+    val fontSize: Int = 18, // Increased from 16 for better readability
     val fontFamily: String = "JetBrains Mono",
     val lineHeight: Double = 1.4,
     val backgroundColor: String = "#1e1e1e",
     val textColor: String = "#ffffff",
+    // Optional title for the code window
+    val title: String? = null,
+    // Background theme for elevated appearance
+    val backgroundTheme: BackgroundTheme = BackgroundTheme.DARCULA,
+    // Design system choice: "macos" or "material"
+    val designSystem: String = "macos",
 ) {
     companion object {
         /**

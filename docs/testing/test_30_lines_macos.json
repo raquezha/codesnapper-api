@@ -1,0 +1,12 @@
+{
+  "code": "// Test: 30 lines (Long code threshold)\nclass LongTest {\n    private val property1 = \"value1\"\n    private val property2 = \"value2\"\n    private val property3 = \"value3\"\n    \n    fun method1() {\n        println(\"Method 1\")\n        val result = calculate()\n        return result\n    }\n    \n    fun method2() {\n        println(\"Method 2\")\n        val data = process()\n        return data\n    }\n    \n    fun method3() {\n        println(\"Method 3\")\n        return \"result\"\n    }\n    \n    private fun calculate(): String {\n        return \"calculated\"\n    }\n    \n    private fun process(): String {\n        return \"processed\"\n    }\n}",
+  "language": "kotlin",
+  "theme": "darcula",
+  "darkMode": true,
+  "title": "30 Lines Test - Long Code",
+  "filename": "test_30_lines",
+  "backgroundTheme": "chatgpt5",
+  "fontSize": 16,
+  "fontFamily": "JetBrains Mono"
+}
+

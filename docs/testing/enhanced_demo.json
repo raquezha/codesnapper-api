@@ -1,0 +1,11 @@
+{
+  "code": "// 🚀 Code Snapper - Enhanced macOS Demo\nclass CodeSnapper {\n    private val highlighter = SyntaxHighlighter()\n    \n    fun generateImage(request: SnapRequest): ByteArray {\n        val highlighted = highlighter.highlight(\n            code = request.code,\n            language = request.language,\n            theme = request.theme\n        )\n        \n        return ImageRenderer.create {\n            title = \"Code Snapper Demo\"\n            width = 1200\n            height = 800\n            backgroundTheme = \"chatgpt5\"\n            font = \"JetBrains Mono\"\n        }.render(highlighted)\n    }\n    \n    suspend fun snap(call: ApplicationCall) {\n        val request = call.receive<SnapRequest>()\n        val imageBytes = generateImage(request)\n        \n        call.response.header(\n            HttpHeaders.ContentDisposition,\n            \"attachment; filename=\\\"${request.filename}.png\\\"\"\n        )\n        \n        call.respondBytes(\n            bytes = imageBytes,\n            contentType = ContentType.Image.PNG\n        )\n    }\n}",
+  "language": "kotlin",
+  "theme": "darcula",
+  "darkMode": true,
+  "title": "Code Snapper - Enhanced macOS Demo",
+  "filename": "final_macos_enhanced",
+  "backgroundTheme": "chatgpt5",
+  "fontSize": 16,
+  "fontFamily": "JetBrains Mono"
+}

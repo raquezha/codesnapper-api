@@ -4,8 +4,8 @@ import dev.snipme.highlights.Highlights
 import net.raquezha.codesnapper.domain.model.CodeSnippet
 import net.raquezha.codesnapper.domain.model.HighlightedCode
 import net.raquezha.codesnapper.domain.service.CodeHighlighterService
-import net.raquezha.codesnapper.parseSyntaxLanguage
-import net.raquezha.codesnapper.parseSyntaxTheme
+import net.raquezha.codesnapper.util.parseSyntaxLanguage
+import net.raquezha.codesnapper.util.parseSyntaxTheme
 
 /**
  * HighlightsCodeHighlighterService

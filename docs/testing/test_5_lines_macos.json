@@ -1,0 +1,13 @@
+{
+  "code": "// Test: 5 lines (Small snippets threshold)\nclass SmallTest {\n    fun method1() = \"line 3\"\n    fun method2() = \"line 4\"\n}",
+  "language": "kotlin",
+  "theme": "darcula",
+  "darkMode": true,
+  "title": "5 Lines Test - Small Snippets",
+  "filename": "test_5_lines",
+  "backgroundTheme": "chatgpt5",
+  "fontSize": 16,
+  "fontFamily": "JetBrains Mono",
+  "designSystem": "material"
+}
+

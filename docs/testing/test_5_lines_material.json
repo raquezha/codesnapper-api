@@ -1,0 +1,13 @@
+{
+  "code": "// Test: 5 lines (Small snippets threshold)\nclass SmallTest {\n    fun example() = \"hello\"\n    // Another comment line here\n}",
+  "language": "kotlin",
+  "theme": "darcula",
+  "darkMode": true,
+  "title": "5 Lines Test - Material Design",
+  "filename": "test_5_lines_material",
+  "backgroundTheme": "chatgpt5",
+  "fontSize": 16,
+  "fontFamily": "JetBrains Mono",
+  "designSystem": "material"
+}
+
