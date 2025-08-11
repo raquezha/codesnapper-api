@@ -2,6 +2,17 @@
 
 A web-based Kotlin service that converts code snippets into beautiful, syntax-highlighted images. Built with Ktor and following Clean Architecture principles with Koin dependency injection.
 
+## 🤖 Built with AI Assistance
+
+This project was developed with **GitHub Copilot Pro** as a coding accelerator. While I have years of experience in software development, I used AI to fast-track the implementation and maintain high code quality. The AI helped with:
+
+- Rapid prototyping and boilerplate generation
+- Clean Architecture pattern implementation
+- Dependency injection setup with Koin
+- Documentation and conventional commits
+
+The core architectural decisions, problem-solving approach, and project direction remain human-driven. AI simply accelerated the "vibe coding" process! 🚀
+
 ## 🚀 Current Status
 
 ✅ **Syntax Highlighting Complete**: The `/snap` endpoint fully works with real syntax highlighting using the Highlights library. It accepts code, language, theme, and darkMode parameters and returns colorized HTML.
