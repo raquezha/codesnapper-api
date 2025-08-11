@@ -6,6 +6,7 @@ kotlinx-serialization-json = "3.2.3"
 koin = "3.5.6"
 ktlint = "1.0.1"
 detekt = "1.23.4"
+gson = "2.10.1"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
@@ -23,6 +24,7 @@ highlights-jvm = { module = "dev.snipme:highlights-jvm", version = "1.0.0" }
 koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
 koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test-junit5", version.ref = "koin" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

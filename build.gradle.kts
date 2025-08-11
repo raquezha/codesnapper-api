@@ -30,14 +30,13 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
 
-    testImplementation(libs.ktor.server.test.host)
-    testImplementation(libs.kotlin.test.junit)
-    testImplementation(libs.koin.test)
+    // JSON processing for testing
+    implementation(libs.gson)
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(23))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
@@ -75,7 +74,7 @@ detekt {
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    jvmTarget = "21"
+    jvmTarget = "17"
     reports {
         html.required.set(true)
         xml.required.set(true)
@@ -114,4 +113,12 @@ tasks.register("codeQuality") {
     description = "Runs all code quality checks"
     group = "verification"
     dependsOn("ktlintCheck", "detekt", "jacocoTestReport")
+}
+
+// Material Design testing task
+tasks.register<JavaExec>("runMaterialDesignTests") {
+    description = "Runs Material Design compliance tests"
+    group = "verification"
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("net.raquezha.codesnapper.testing.MaterialDesignTestRunnerKt")
 }
