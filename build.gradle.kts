@@ -24,8 +24,14 @@ dependencies {
     implementation(libs.ktor.server.config.yaml)
     implementation(libs.serialization.json)
     implementation(libs.highlights.jvm)
+
+    // Koin DI
+    implementation(libs.koin.ktor)
+    implementation(libs.koin.logger.slf4j)
+
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.koin.test)
 }
 
 java {

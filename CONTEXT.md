@@ -7,6 +7,8 @@ Code Snapper is a web-based Kotlin app that converts code input into beautiful, 
 - Language: Kotlin
 - Framework: Ktor (Web + REST API)
 - Build Tool: Gradle (Kotlin DSL)
+- Dependency Injection: Koin 3.5.6
+- Syntax Highlighting: Highlights JVM 1.0.0
 - Output: PNG (or SVG) image
 - Optional Renderer: Java2D or headless Chromium
 
@@ -50,6 +52,10 @@ Content-Type: `image/png` or `image/svg+xml`
 
 > ✅ **COMPLETED**: All layers are properly implemented - domain models (CodeSnippet, HighlightedCode), service interfaces (CodeHighlighterService), use cases (HighlightCodeUseCase), infrastructure (HighlightsCodeHighlighterService), and controllers (SnapRequest). The HighlightsCodeHighlighterService now uses the real Highlights library API instead of returning empty lists.
 
+- [x] Dependency Injection with Koin
+
+> ✅ **COMPLETED**: Koin DI is fully integrated with Clean Architecture. All dependencies are managed through the `appModule` in `/di/AppModule.kt`. The routing layer uses `inject<HighlightCodeUseCase>()` instead of manual instantiation, making the code more testable and maintainable. Koin is configured with SLF4J logging for better debugging.
+
 - [ ] Render highlighted code as PNG (or SVG)
 - [ ] Return image with correct Content-Type
 - [ ] Validate input and handle errors gracefully
@@ -77,6 +83,10 @@ This project follows Clean Architecture principles for maintainability and testa
 - **usecase/**: Application-specific use cases (e.g., HighlightCodeUseCase)
 - **infrastructure/**: Implementations of interfaces, integrations (e.g., HighlightsCodeHighlighterService)
 - **adapter/controller/**: HTTP layer, DTOs (e.g., SnapRequest)
+- **di/**: Dependency injection configuration (Koin modules)
 - **Routing.kt**: Ktor routing/controllers, delegates to use cases
+
+**Dependency Injection with Koin:**
+All dependencies are managed through Koin DI container. The `appModule` defines singleton instances for services and use cases. Controllers use `inject<T>()` to receive dependencies, ensuring loose coupling and testability.
 
 This separation ensures the core logic is independent of frameworks and easy to test, extend, or swap out. See the codebase for concrete examples.

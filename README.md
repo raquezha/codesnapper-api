@@ -1,10 +1,21 @@
 # 🖼️ Code Snapper
 
-A web-based Kotlin service that converts code snippets into beautiful, syntax-highlighted images. Built with Ktor and following Clean Architecture principles.
+A web-based Kotlin service that converts code snippets into beautiful, syntax-highlighted images. Built with Ktor and following Clean Architecture principles with Koin dependency injection.
 
 ## 🚀 Current Status
 
 ✅ **Syntax Highlighting Complete**: The `/snap` endpoint fully works with real syntax highlighting using the Highlights library. It accepts code, language, theme, and darkMode parameters and returns colorized HTML.
+
+✅ **Dependency Injection**: Koin DI is fully integrated with Clean Architecture for maintainable and testable code.
+
+## 🧰 Tech Stack
+
+- **Language**: Kotlin
+- **Framework**: Ktor (Web + REST API) 
+- **Build Tool**: Gradle (Kotlin DSL)
+- **Dependency Injection**: Koin 3.5.6
+- **Syntax Highlighting**: Highlights JVM 1.0.0
+- **Architecture**: Clean Architecture principles
 
 ## 📦 API
 
@@ -32,6 +43,7 @@ Currently returns syntax-highlighted HTML (`text/html`).
 - [x] Highlights library integration with real syntax highlighting
 - [x] Multiple language and theme support with validation
 - [x] Clean Architecture implementation (domain/usecase/infrastructure layers)
+- [x] Koin dependency injection integration
 - [x] HTML output with proper color styling
 - [x] Input validation and error handling for unsupported languages/themes
 

@@ -14,13 +14,12 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import net.raquezha.codesnapper.domain.model.CodeSnippet
-import net.raquezha.codesnapper.infrastructure.HighlightsCodeHighlighterService
 import net.raquezha.codesnapper.usecase.HighlightCodeUseCase
+import org.koin.ktor.ext.inject
 
 
 fun Application.configureRouting() {
-    val highlighterService = HighlightsCodeHighlighterService()
-    val highlightCodeUseCase = HighlightCodeUseCase(highlighterService)
+    val highlightCodeUseCase by inject<HighlightCodeUseCase>()
     routing {
         get("/") {
             call.respondText("Hello World!")

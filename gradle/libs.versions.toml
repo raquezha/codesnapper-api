@@ -3,6 +3,7 @@ kotlin = "2.1.10"
 ktor = "3.2.3"
 logback = "1.5.13"
 kotlinx-serialization-json = "3.2.3"
+koin = "3.5.6"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
@@ -17,6 +18,9 @@ ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref 
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "kotlinx-serialization-json" }
 highlights-jvm = { module = "dev.snipme:highlights-jvm", version = "1.0.0" }
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test-junit5", version.ref = "koin" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
