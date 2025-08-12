@@ -146,6 +146,26 @@ Returns a syntax-highlighted image of the provided code with standardized filena
 - [ ] Build a frontend playground
 - [ ] Add pastebin-like history
 
+## 🗓️ Calendar Enhancement Features (Future)
+- [ ] **Custom Calendar Language Support**
+  - Add `"language": "calendar"` with special highlighting for calendar events
+  - Template formatting for structured calendar events with nice indentation
+  - Custom syntax highlighting for dates, times, locations, and descriptions
+
+- [ ] **Calendar Visual Enhancements**
+  - Icon support: Add calendar/clock icons to the design
+  - Calendar-specific color schemes and themes
+  - Enhanced typography for event titles, times, and details
+  - Special formatting for recurring events and meeting details
+
+- [ ] **n8n Workflow Integration**
+  - Optimize API for calendar event automation workflows
+  - Template presets for common calendar event formats
+  - Enhanced error handling for non-code content
+  - Performance optimization for high-frequency calendar notifications
+
+> 💡 **Use Case**: Transform calendar events into beautiful, code-styled images for Telegram notifications via n8n workflows. Perfect for team meeting announcements and event sharing with professional visual appeal.
+
 ## 🔮 Future Automation Features
 - [ ] Dependency Updates: Automated PRs for dependency updates
 - [ ] Security Scanning: Vulnerability scanning for dependencies
