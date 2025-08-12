@@ -188,6 +188,29 @@ Returns a syntax-highlighted image of the provided code with standardized filena
 - [ ] Documentation Generation: Auto-generate API docs and code coverage badges
 - [ ] Performance Monitoring: Benchmark tests and memory usage tracking
 
+## 🐳 Deployment & Integration (Future)
+- [ ] **Docker Containerization**
+  - Create Dockerfile for containerized deployment
+  - GitHub Actions workflow for automatic Docker image builds
+  - Push to GitHub Container Registry (ghcr.io) or Docker Hub
+  - Container health checks and monitoring
+
+- [ ] **Cloud Deployment Options**
+  - Railway deployment for zero-ops hosting
+  - Render.com integration for automatic deployments
+  - Google Cloud Run for serverless container deployment
+  - AWS Fargate for scalable container hosting
+
+- [ ] **n8n Workflow Integration**
+  - Deploy Code Snapper API as Docker container service
+  - Provide permanent URL for n8n HTTP Request nodes
+  - Optimize API for calendar event → image → Telegram workflows
+  - Performance testing for automation use cases
+
+> 💡 **Primary Use Case**: Deploy Code Snapper API as containerized service for n8n automation workflows. Transform calendar events into beautiful, Material Design compliant images for Telegram notifications. Docker provides zero-maintenance deployment with permanent URLs perfect for n8n integration.
+
+> 🎯 **Deployment Strategy**: GitHub → Auto-build Docker → Deploy to Railway/Render → Get permanent URL → Use in n8n workflows. Performance overhead of containerization (~5-10ms) is negligible compared to 200ms API response time.
+
 ## 🧪 **Testing & Automation**
 
 ### Material Design Compliance Testing
@@ -242,6 +265,21 @@ These utilities were essential for solving the bulletproof text width calculatio
 
 ## 🤖 AI Notes
 Use this file as context when writing, refactoring, or generating features. Always keep the API shape consistent and make image output the core priority. The project now supports both macOS and Material Design aesthetics with **verified Material Design 3 compliance** - ensure new features maintain this compliance level and work with both design systems.
+
+### 📝 README.md Maintenance Guidelines
+**Important**: The README.md was refactored (August 2025) to be professional, clean, and well-organized. When updating the README in the future:
+
+- **Keep it professional**: Use simple, compassionate language without excessive casual terms
+- **Maintain clean structure**: Logical flow from Overview → Quick Start → API Reference → Development → Deployment
+- **Avoid chaotic organization**: Don't scatter details randomly - group related information together
+- **No excessive symbols**: Avoid overuse of dashes, bullets, and emoji in favor of clean formatting
+- **Table format for API docs**: Use tables for parameters rather than bullet lists
+- **Clear section purposes**: Each section should have a specific, obvious purpose
+- **Professional tone**: Write like enterprise software documentation, not casual blog posts
+
+**Structure to maintain**: Overview → Quick Start → Key Features → API Reference → Development → Production Deployment → Technical Details → Future Enhancements → Support
+
+The README should serve as user-facing documentation that guides readers naturally from "What is this?" to "How do I use it?" to "How do I deploy it?" Keep CONTEXT.md for detailed technical implementation notes and comprehensive project history.
 
 ## 🏛️ Architecture
 
