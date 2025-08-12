@@ -25,7 +25,6 @@ jobs:
           fetch-depth: 0
 
       - name: Set up JDK 17
-        id: setup-java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -48,20 +47,13 @@ jobs:
         uses: JetBrains/qodana-action@v2024.3
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-          JAVA_HOME: ${{ steps.setup-java.outputs.path }}
+          QODANA_JVM_VERSION: '17'
         with:
-          # Use compatible linter version with Java 17 support
           args: --linter,jetbrains/qodana-jvm-community:2024.3
-          # Explicitly specify Java version for Qodana
           java-version: '17'
-          # Mount the Java installation into Qodana container
-          volumes: |
-            ${{ steps.setup-java.outputs.path }}:/opt/java/openjdk
           pr-mode: false
           use-caches: true
           post-pr-comment: true
           use-annotations: true
-          # Upload Qodana results (SARIF, other artifacts, logs) as an artifact to the job
           upload-result: false
-          # quick-fixes available in Ultimate and Ultimate Plus plans
           push-fixes: 'none'
