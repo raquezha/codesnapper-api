@@ -40,45 +40,21 @@ jobs:
 
           const message = `## 🚨 Conventional Commits Validation Failed
 
-**Your commit messages don't follow the required format.** Please update them to match the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+          Your commit messages don't follow the [Conventional Commits](https://www.conventionalcommits.org/) specification.
 
-### ✅ Valid Examples:
-\`\`\`
-feat: add comprehensive testing infrastructure
-fix: resolve image rendering issue with long code lines
-docs: update API documentation for new endpoints
-test: add unit tests for GenerateCodeImageUseCase
-refactor: extract validation logic to separate service
-\`\`\`
+          **Required format:** \`type(scope): description\`
 
-### 🏷️ Required Format:
-\`\`\`
-<type>[optional scope]: <description>
+          **Examples:**
+          - \`feat: add user authentication\`
+          - \`fix: resolve login validation bug\`
+          - \`docs: update API documentation\`
+          - \`test: add unit tests for user service\`
 
-[optional body]
+          **Valid types:** feat, fix, docs, style, refactor, test, chore
 
-[optional footer(s)]
-\`\`\`
+          Please update your commit messages and force push to fix this issue.
 
-### 📋 Valid Types:
-- **feat**: New feature
-- **fix**: Bug fix
-- **docs**: Documentation changes
-- **test**: Adding or updating tests
-- **refactor**: Code refactoring
-- **style**: Code style changes (formatting, etc.)
-- **perf**: Performance improvements
-- **chore**: Maintenance tasks
-- **ci**: CI/CD changes
-- **build**: Build system changes
-
-### 🔧 How to Fix:
-1. Use \`git rebase -i\` to edit commit messages
-2. Or create a new PR with properly formatted commits
-3. See our [Contributing Guide](https://github.com/raquezha/codesnapper/blob/main/CONTRIBUTING.md#commit-standards) for details
-
----
-*This check ensures consistent commit history and automated changelog generation.*`;
+          For detailed guidelines, see our [Contributing Guide](https://github.com/raquezha/codesnapper/blob/main/CONTRIBUTING.md#commit-standards).`;
 
           if (botComment) {
             await github.rest.issues.updateComment({
