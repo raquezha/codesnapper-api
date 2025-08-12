@@ -14,6 +14,21 @@ application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
 
+// Configure toolchain download repositories for CI/CD environments
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+// Enable toolchain download repositories for GitHub Actions
+gradle.beforeProject {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.host.common)
@@ -37,12 +52,6 @@ dependencies {
     testImplementation(libs.ktor.client.core)
     testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.koin.test)
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
 }
 
 // =====================================
