@@ -122,9 +122,9 @@ class InputValidationService {
                 errors.add(
                     ValidationError(
                         field = "language",
-                        message = "Unsupported language: $language. Supported languages: ${SUPPORTED_LANGUAGES.joinToString(
-                            ", ",
-                        )}",
+                        message =
+                            "Unsupported language: $language." +
+                                " Supported languages: ${SUPPORTED_LANGUAGES.joinToString(", ")}",
                         code = "UNSUPPORTED_LANGUAGE",
                     ),
                 )
@@ -155,9 +155,9 @@ class InputValidationService {
             errors.add(
                 ValidationError(
                     field = "designSystem",
-                    message = "Unsupported design system: $designSystem. Supported design systems: ${SUPPORTED_DESIGN_SYSTEMS.joinToString(
-                        ", ",
-                    )}",
+                    message =
+                        "Unsupported design system: $designSystem." +
+                            " Supported design systems: ${SUPPORTED_DESIGN_SYSTEMS.joinToString(", ")}",
                     code = "UNSUPPORTED_DESIGN_SYSTEM",
                 ),
             )

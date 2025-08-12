@@ -1,7 +1,24 @@
-# 🖼️ Code Snapper — Project Context
+# 🖼️ Code Snapper API — Project Context
 
 ## 🚀 Purpose
-Code Snapper is a web-based Kotlin app that converts code input into beautiful, shareable images with syntax highlighting. It supports both **macOS** and **Material Design** aesthetics, giving users choice over their preferred design system. It also exposes an API so other tools or services can use it.
+Code Snapper API is a production-ready Kotlin backend service that converts code input into beautiful, shareable images with syntax highlighting. It supports both **macOS** and **Material Design** aesthetics, giving users choice over their preferred design system.
+
+**This is the core API service** - designed to be consumed by multiple frontend applications including web interfaces, mobile apps, and other tools or services.
+
+## 🌐 Architecture Overview
+```
+Code Snapper Ecosystem:
+├── codesnapper (this project)     # 🎯 Core API Service (Ktor + Kotlin)
+├── codesnapper-web (planned)      # 🌐 Web Frontend Interface
+├── codesnapper-android (planned)  # 📱 Android Mobile App
+└── codesnapper-shared (optional)  # 📦 Shared Models/DTOs
+```
+
+This API service is designed to be:
+- **Technology Agnostic**: Any frontend can consume it
+- **Scalable**: Can be deployed independently
+- **Complete**: Full feature set available via REST API
+- **Production Ready**: 100% Material Design 3 compliance verified
 
 ## 🧰 Tech Stack
 - Language: Kotlin (Java 17 compatibility)

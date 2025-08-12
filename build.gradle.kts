@@ -32,6 +32,11 @@ dependencies {
 
     // JSON processing for testing
     implementation(libs.gson)
+
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.ktor.client.core)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.koin.test)
 }
 
 java {
