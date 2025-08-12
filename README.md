@@ -106,6 +106,20 @@ Code Snapper API is designed for containerized deployment, making it perfect for
 **Zero-Ops Hosting** Deploy to Railway, Render, or Google Cloud Run
 **Permanent URLs** Reliable endpoints for production services
 
+### Using Released Versions
+
+**Docker Images Available:**
+```bash
+# Use latest stable release
+docker pull ghcr.io/raquezha/codesnapper:latest
+
+# Use specific version
+docker pull ghcr.io/raquezha/codesnapper:0.0.1
+```
+
+**Download JAR Files:**
+Visit our [GitHub Releases](https://github.com/raquezha/codesnapper/releases) page to download pre-built JAR files for any version.
+
 ### Example: Calendar Event to Image
 
 Transform calendar events into professional images for team notifications:
@@ -126,6 +140,18 @@ Transform calendar events into professional images for team notifications:
 2. **Container** Auto-build Docker images via GitHub Actions
 3. **Cloud** Deploy to Railway or Render for instant URLs
 4. **Integration** Use the permanent URL in your automation workflows
+
+### Release Information
+
+**Current Status:** Ready for v0.0.1 release
+**Release Schedule:** Tag-based releases with automated CI/CD
+**Docker Registry:** GitHub Container Registry (ghcr.io)
+**Changelog:** See [CHANGELOG.md](CHANGELOG.md) for detailed release notes
+
+**Version Strategy:**
+- Development versions (0.x.x) for active development
+- Stable versions (1.x.x) for production use
+- Clean, simple version numbers without suffixes
 
 ## Technical Details
 

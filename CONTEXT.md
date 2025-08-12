@@ -140,6 +140,33 @@ Returns a syntax-highlighted image of the provided code with standardized filena
 
 > ✅ **COMPLETED**: Standardized on Java 17 for optimal compatibility across development and runtime environments. Fixed compilation issues and updated build configuration to ensure consistent behavior. Optimized build process to skip problematic detekt checks during Material Design testing while maintaining code quality standards.
 
+## 🚀 Release Process
+
+### Simple Release Instructions
+1. **Code, code, code** - Make your changes
+2. **Create tag** - `git tag 0.0.1 -m "Release message"`
+3. **Push tag** - `git push origin 0.0.1`
+4. **GitHub Actions handles the rest** - Automatic build, Docker images, release page
+
+### Version Strategy
+- **Development releases**: `0.0.1`, `0.0.2`, `0.1.0` - Active development, expect changes
+- **Stable releases**: `1.0.0`, `1.1.0`, `2.0.0` - Production-ready
+- **Patch releases**: `1.0.1`, `1.0.2` - Bug fixes only
+
+### What You Get Automatically
+- ✅ GitHub release page with changelog
+- ✅ Docker images: `ghcr.io/raquezha/codesnapper:0.0.1`
+- ✅ Downloadable JAR files for users
+- ✅ Professional release notes
+
+### Release Workflow Features
+The automated release workflow (`.github/workflows/release.yml`) handles:
+- Version updating in `build.gradle.kts`
+- Full test suite execution
+- Docker image building and tagging
+- GitHub release creation with artifacts
+- Changelog integration from `CHANGELOG.md`
+
 ## 🎯 Next Priorities
 
 - [ ] Add unit and integration tests for endpoints
