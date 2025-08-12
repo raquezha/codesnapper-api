@@ -140,8 +140,10 @@ Returns a syntax-highlighted image of the provided code with standardized filena
 
 > ✅ **COMPLETED**: Standardized on Java 17 for optimal compatibility across development and runtime environments. Fixed compilation issues and updated build configuration to ensure consistent behavior. Optimized build process to skip problematic detekt checks during Material Design testing while maintaining code quality standards.
 
-- [ ] Add unit and integration tests for the endpoint
-- [ ] Add download/preview URL
+## 🎯 Next Priorities
+
+- [ ] Add unit and integration tests for endpoints
+- [ ] Add download/preview URL functionality
 - [ ] Implement rate limiting or usage tracking
 - [ ] Build a frontend playground
 - [ ] Add pastebin-like history

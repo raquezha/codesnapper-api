@@ -146,6 +146,18 @@ Built with Clean Architecture principles using Kotlin and Ktor framework. Depend
 
 ## Future Enhancements
 
+### Next Priorities
+
+**Testing & Quality Assurance**
+- Unit and integration tests for all endpoints
+- Comprehensive test coverage for production readiness
+
+**Enhanced User Experience**
+- Download/preview URL functionality for easier sharing
+- Rate limiting and usage tracking for production deployment
+- Frontend playground for interactive code testing
+- Pastebin-like history for saved snippets
+
 ### Configuration Presets
 Planned support for common use cases:
 
