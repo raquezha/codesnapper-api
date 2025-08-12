@@ -146,6 +146,21 @@ Returns a syntax-highlighted image of the provided code with standardized filena
 - [ ] Build a frontend playground
 - [ ] Add pastebin-like history
 
+## 🎨 ImageConfiguration Enhancements (Future)
+- [ ] **Implement Unused Configuration Presets**
+  - Integrate `ImageConfiguration.lightTheme()` for light mode support
+  - Implement `ImageConfiguration.presentation()` for large format presentations (1920x1080, 24px font)
+  - Add `ImageConfiguration.compact()` for social media optimized images (800x600, 14px font)
+  - Create API endpoints or parameters to easily access these presets
+
+- [ ] **Configuration Preset API Integration**
+  - Add preset parameter: `"preset": "light"`, `"preset": "presentation"`, `"preset": "compact"`
+  - Combine presets with design systems for powerful combinations
+  - Document preset options in API documentation
+  - Add validation for preset parameters
+
+> 💡 **Use Case**: The `ImageConfiguration` companion object already defines these useful presets, but they're not currently integrated into the API workflow. These would be perfect for different use cases like presentations, social media, and light theme preferences.
+
 ## 🗓️ Calendar Enhancement Features (Future)
 - [ ] **Custom Calendar Language Support**
   - Add `"language": "calendar"` with special highlighting for calendar events
