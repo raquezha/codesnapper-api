@@ -206,8 +206,25 @@ Special handling for calendar events and structured data:
 }
 ```
 
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Development setup and workflow
+- Code quality standards and testing requirements
+- Repository settings and branch protection rules
+- How to submit pull requests and report issues
+
+For repository configuration details, see [Repository Settings Guide](docs/REPOSITORY_SETTINGS.md).
+
 ## Support
 
 This API is production-ready and actively maintained. The codebase follows industry best practices with comprehensive testing and quality assurance measures in place.
+
+**Getting Help:**
+- 🐛 **Bug Reports**: Use our [bug report template](.github/ISSUE_TEMPLATE/bug_report.md)
+- 💡 **Feature Requests**: Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.md)
+- 🔒 **Security Issues**: See our [Security Policy](SECURITY.md)
+- 💬 **Questions**: Start a discussion in GitHub Discussions
 
 For technical implementation details, see [CONTEXT.md](CONTEXT.md).

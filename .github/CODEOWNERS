@@ -1,0 +1,40 @@
+# Code Owners for Code Snapper API
+# 
+# This file defines individuals or teams that are responsible for code in this repository.
+# Code owners are automatically requested for review when someone opens a pull request
+# that modifies code that they own.
+#
+# Order is important; the last matching pattern takes the most precedence.
+
+# Global ownership - these users are code owners for everything in the repo
+* @raquezha
+
+# Documentation
+*.md @raquezha
+docs/ @raquezha
+
+# CI/CD workflows and configuration
+.github/ @raquezha
+.github/workflows/ @raquezha
+Dockerfile @raquezha
+docker-compose*.yml @raquezha
+
+# Build configuration
+build.gradle.kts @raquezha
+settings.gradle.kts @raquezha
+gradle.properties @raquezha
+gradlew* @raquezha
+
+# Code quality configuration
+.ktlint @raquezha
+.editorconfig @raquezha
+config/ @raquezha
+
+# Core source code
+src/ @raquezha
+
+# Test automation scripts
+test-*.sh @raquezha
+
+# Security and dependency management
+SECURITY.md @raquezha
