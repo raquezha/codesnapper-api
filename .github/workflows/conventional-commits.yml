@@ -1,0 +1,97 @@
+name: Conventional Commits
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  conventional-commits:
+    name: Validate Conventional Commits
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Validate Conventional Commits
+      uses: wagoid/commitlint-github-action@v5
+      with:
+        configFile: '.commitlintrc.json'
+        helpURL: 'https://github.com/raquezha/codesnapper/blob/main/CONTRIBUTING.md#commit-standards'
+
+    - name: Comment on PR if validation fails
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: comments } = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+
+          const botComment = comments.find(comment =>
+            comment.user.type === 'Bot' &&
+            comment.body.includes('Conventional Commits Validation Failed')
+          );
+
+          const message = `## 🚨 Conventional Commits Validation Failed
+
+**Your commit messages don't follow the required format.** Please update them to match the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+
+### ✅ Valid Examples:
+\`\`\`
+feat: add comprehensive testing infrastructure
+fix: resolve image rendering issue with long code lines
+docs: update API documentation for new endpoints
+test: add unit tests for GenerateCodeImageUseCase
+refactor: extract validation logic to separate service
+\`\`\`
+
+### 🏷️ Required Format:
+\`\`\`
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+\`\`\`
+
+### 📋 Valid Types:
+- **feat**: New feature
+- **fix**: Bug fix
+- **docs**: Documentation changes
+- **test**: Adding or updating tests
+- **refactor**: Code refactoring
+- **style**: Code style changes (formatting, etc.)
+- **perf**: Performance improvements
+- **chore**: Maintenance tasks
+- **ci**: CI/CD changes
+- **build**: Build system changes
+
+### 🔧 How to Fix:
+1. Use \`git rebase -i\` to edit commit messages
+2. Or create a new PR with properly formatted commits
+3. See our [Contributing Guide](https://github.com/raquezha/codesnapper/blob/main/CONTRIBUTING.md#commit-standards) for details
+
+---
+*This check ensures consistent commit history and automated changelog generation.*`;
+
+          if (botComment) {
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: botComment.id,
+              body: message
+            });
+          } else {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: message
+            });
+          }

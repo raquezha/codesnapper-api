@@ -20,6 +20,33 @@ This API service is designed to be:
 - **Complete**: Full feature set available via REST API
 - **Production Ready**: 100% Material Design 3 compliance verified
 
+## 🔄 Development Workflow
+
+This project follows **industry-standard development practices** with GitHub Actions CI/CD:
+
+### Branch Strategy
+- **Git Flow** with conventional naming (`feature/`, `fix/`, `docs/`, `refactor/`)
+- Feature branches from `main`
+- Pull Request (PR) workflow with code reviews
+- Squash and merge strategy
+
+### Commit Standards
+- **Conventional Commits** specification
+- Examples: `feat:`, `fix:`, `docs:`, `test:`, `refactor:`
+- Breaking changes: `feat!:` or `fix!:`
+
+### Quality Gates
+- All CI checks must pass (tests, linting, static analysis)
+- Minimum 80% test coverage
+- Code review approval required
+- Automated quality checks: ktlint, detekt, JaCoCo
+
+### Documentation Requirements
+- Update CHANGELOG.md for all features
+- Update README.md for user-facing changes
+- Update CONTEXT.md for architectural changes
+- See CONTRIBUTING.md for full workflow details
+
 ## 🧰 Tech Stack
 - Language: Kotlin (Java 17 compatibility)
 - Framework: Ktor (Web + REST API)
