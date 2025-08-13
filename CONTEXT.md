@@ -100,15 +100,30 @@ The project includes professional issue templates:
 - **🐛 Bug Report** - Issue reporting with reproduction steps
 - **⚡ Ready to Code** - Quick-win tasks with clear acceptance criteria
 
-### **Available GitHub Issues:**
+### **GitHub Issues Ready for Creation:**
 
-Current ready-to-code issues include:
-- **#2**: Add light theme support (30-45 minutes)
-- **#3**: Add configuration preset API (45-60 minutes)
-- **#4**: Add unit and integration tests (2-3 hours)
-- **#5**: Add download/preview URL functionality (1-2 hours)
+The following 11 GitHub issues are ready to be created from the project TODOs:
 
-**To work on any issue**: Simply mention the feature name and the AI will automatically find and reference the appropriate GitHub issue throughout development.
+**Ready-to-Code Issues (Quick Wins - 30min to 2 hours):**
+1. **Add light theme support** - Integrate existing `ImageConfiguration.lightTheme()` method
+2. **Add configuration preset API** - Expose presentation/compact/light presets via API
+3. **Add custom calendar language support** - Special formatting for calendar events
+
+**Development & Testing Issues (2-4 hours):**
+4. **Add unit and integration tests for endpoints** - Comprehensive test coverage
+5. **Add download and preview URL functionality** - Image storage and retrieval via URLs
+6. **Build a frontend playground** - Web interface for testing API interactively
+
+**Production & Infrastructure Issues (3-6 hours):**
+7. **Implement rate limiting and usage tracking** - API abuse prevention and metrics
+8. **Add pastebin-like history functionality** - Persistent image storage and browsing
+9. **Optimize Docker containerization** - Production-ready containerization
+
+**Automation & Monitoring Issues (2-4 hours):**
+10. **Add dependency update automation** - Automated PRs for dependency updates
+11. **Add performance monitoring and benchmarks** - Performance tracking and optimization
+
+These issues are ready to be created in GitHub with detailed implementation guidance, proper labels (`enhancement`, `ready-to-code`, `good first issue`), and clear acceptance criteria.
 
 ## 🧰 Tech Stack
 - Language: Kotlin (Java 17 compatibility)
@@ -463,3 +478,28 @@ This project includes comprehensive code quality tools and Material Design compl
 - **Corner Radius**: ✅ Uses Material Design standard radii (12dp for cards)
 
 Reports are generated in `build/reports/` directory and `docs/testing/` for Material Design compliance.
+
+### **Current GitHub Issues Status:**
+
+✅ **All 11 GitHub issues successfully created** (Issues #17 to #27):
+
+**Ready-to-Code Issues (Quick Wins - 30min to 2 hours):**
+- **Issue #17**: Add light theme support - Integrate existing `ImageConfiguration.lightTheme()` method
+- **Issue #18**: Add configuration preset API - Expose presentation/compact/light presets via API
+- **Issue #19**: Add custom calendar language support - Special formatting for calendar events
+
+**Development & Testing Issues (2-4 hours):**
+- **Issue #20**: Add unit and integration tests for endpoints - Comprehensive test coverage
+- **Issue #21**: Add download and preview URL functionality - Image storage and retrieval via URLs
+- **Issue #22**: Build a frontend playground - Web interface for testing API interactively
+
+**Production & Infrastructure Issues (3-6 hours):**
+- **Issue #23**: Implement rate limiting and usage tracking - API abuse prevention and metrics
+- **Issue #24**: Add pastebin-like history functionality - Persistent image storage and browsing
+- **Issue #25**: Optimize Docker containerization - Production-ready containerization
+
+**Automation & Monitoring Issues (2-4 hours):**
+- **Issue #26**: Add dependency update automation - Automated PRs for dependency updates
+- **Issue #27**: Add performance monitoring and benchmarks - Performance tracking and optimization
+
+**To work on any issue**: Simply mention the feature name (e.g., "Let's work on light theme support") and the AI will automatically find and reference the appropriate GitHub issue (#17) throughout development.

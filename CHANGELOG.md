@@ -84,5 +84,3 @@ While labeled as alpha, this release includes production-grade features:
 - CI/CD automation
 - Performance optimization
 
-[Unreleased]: https://github.com/raquezha/codesnapper/compare/v0.0.1-alpha...HEAD
-[0.0.1-alpha]: https://github.com/raquezha/codesnapper/releases/tag/v0.0.1-alpha

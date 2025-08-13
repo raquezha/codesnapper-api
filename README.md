@@ -97,150 +97,42 @@ The API will be available at `http://localhost:8081`
 
 ## Production Deployment
 
-### Docker Deployment
+Code Snapper API is packaged as a Docker container for easy, zero-ops deployment. Pull the official image or build your own:
 
-Code Snapper API is designed for containerized deployment, making it perfect for:
-
-**Automation Workflows** Integrate with n8n, Zapier, or custom automation tools
-**Bot Integration** Generate images for Telegram, Discord, or Slack bots
-**Zero-Ops Hosting** Deploy to Railway, Render, or Google Cloud Run
-**Permanent URLs** Reliable endpoints for production services
-
-### Using Released Versions
-
-**Docker Images Available:**
 ```bash
-# Use latest stable release
+# Pull latest release
 docker pull ghcr.io/raquezha/codesnapper:latest
 
-# Use specific version
-docker pull ghcr.io/raquezha/codesnapper:0.0.1
+# Run locally
+docker run -p 8081:8081 ghcr.io/raquezha/codesnapper:latest
 ```
 
-**Download JAR Files:**
-Visit our [GitHub Releases](https://github.com/raquezha/codesnapper/releases) page to download pre-built JAR files for any version.
+Alternatively, download the JAR and run directly:
 
-### Example: Calendar Event to Image
-
-Transform calendar events into professional images for team notifications:
-
-```json
-{
-  "code": "Android Team Weekly Meeting\n8:30 am to 11:00 am\nBoard Room\nDiscussion about upcoming releases",
-  "language": "text",
-  "designSystem": "material",
-  "title": "Team Meeting",
-  "backgroundTheme": "chatgpt5"
-}
+```bash
+java -jar codesnapper-<version>.jar
 ```
-
-### Deployment Strategy
-
-1. **Repository** Push code to GitHub for automatic builds
-2. **Container** Auto-build Docker images via GitHub Actions
-3. **Cloud** Deploy to Railway or Render for instant URLs
-4. **Integration** Use the permanent URL in your automation workflows
-
-### Release Information
-
-**Current Status:** Ready for v0.0.1 release
-**Release Schedule:** Tag-based releases with automated CI/CD
-**Docker Registry:** GitHub Container Registry (ghcr.io)
-**Changelog:** See [CHANGELOG.md](CHANGELOG.md) for detailed release notes
-
-**Version Strategy:**
-- Development versions (0.x.x) for active development
-- Stable versions (1.x.x) for production use
-- Clean, simple version numbers without suffixes
-
-## Technical Details
-
-### Architecture
-Built with Clean Architecture principles using Kotlin and Ktor framework. Dependency injection managed through Koin for maintainability and testability.
-
-### Quality Assurance
-**Material Design Compliance** 100/100 perfect score verified by automated testing
-**Code Quality** ktlint formatting, detekt static analysis, comprehensive test coverage
-**Performance** 200ms average response time for image generation
-**Compatibility** Java 17 optimized for production environments
-
-### Current Status
-**Production Ready** Complete PNG rendering with syntax highlighting
-**Fully Tested** Automated testing framework with 6/6 passing tests
-**Compliance Verified** Material Design 3 standards met with automated validation
-**Performance Optimized** Fast API responses suitable for automation workflows
 
 ## Future Enhancements
 
-### Next Priorities
+Planned improvements include:
 
-**Testing & Quality Assurance**
 - Unit and integration tests for all endpoints
-- Comprehensive test coverage for production readiness
-
-**Enhanced User Experience**
-- Download/preview URL functionality for easier sharing
-- Rate limiting and usage tracking for production deployment
-- Frontend playground for interactive code testing
-- Pastebin-like history for saved snippets
-
-### Configuration Presets
-Planned support for common use cases:
-
-```json
-{
-  "preset": "compact",        // Social media optimized
-  "preset": "presentation",   // Large format for slides
-  "preset": "light"          // Light theme variant
-}
-```
-
-### Calendar Language Support
-Special handling for calendar events and structured data:
-
-```json
-{
-  "language": "calendar",
-  "code": "Meeting details...",
-  "designSystem": "material"
-}
-```
-
-## Support
-
-This API is production-ready and actively maintained. The codebase follows industry best practices with comprehensive testing and quality assurance measures in place.
-
-For technical implementation details, see [CONTEXT.md](CONTEXT.md).
+- Download/preview URL functionality
+- Rate limiting and usage tracking
+- Interactive frontend playground
+- Pastebin-style history for saved snippets
+- Configuration presets (compact, presentation, light themes)
 
 ## Development & Contributing
 
-### Quick Start Development
+For full development guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Quick start:
 ```bash
 git clone https://github.com/raquezha/codesnapper-api.git
 cd codesnapper-api
 ./gradlew run
 ```
 
-### GitHub Issue Workflow
-This project uses a **smart issue-aware development workflow** for contributors:
-
-- **Ready-to-Code Issues**: All features tracked as GitHub issues with detailed implementation guidance
-- **Clear Task Selection**: Browse issues labeled `ready-to-code` and `good first issue` for quick wins
-- **Automatic Referencing**: All commits reference GitHub issue numbers for perfect traceability
-- **Professional Templates**: Feature requests, bug reports, and ready-to-code templates available
-
-**Available Issues:**
-- **Issue #2**: Add light theme support (30-45 minutes)
-- **Issue #3**: Add configuration preset API (45-60 minutes)
-- **Issue #4**: Add unit and integration tests (2-3 hours)
-- **Issue #5**: Add download/preview URL functionality (1-2 hours)
-
-See [GitHub Issues](https://github.com/raquezha/codesnapper-api/issues) for current tasks and detailed implementation guidance.
-
-### Quality Standards
-- **Conventional Commits**: All commits follow conventional commit format
-- **Code Quality**: ktlint formatting, detekt analysis, minimum 80% test coverage
-- **Material Design Compliance**: New features must maintain 100/100 compliance score
-- **Documentation**: Update README.md, CONTEXT.md, and CHANGELOG.md for changes
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for complete development guidelines and workflow details
+Browse ready-to-code issues on GitHub to get started: https://github.com/raquezha/codesnapper-api/issues
