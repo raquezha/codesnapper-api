@@ -117,6 +117,13 @@ The API will be available at `http://localhost:8081`
 ./gradlew codeQuality
 ```
 
+Presets in test data:
+The JSON samples under docs/testing now demonstrate different scenarios via the `preset` parameter:
+- 5-line samples: `compact` (macOS) and `light` (Material)
+- 15-line samples: `default` (both design systems)
+- 30-line samples: `presentation` (both design systems)
+When adding new test fixtures prefer using a preset for baseline sizing, then override only what is necessary (e.g. width/height/fontSize) to keep fixtures concise.
+
 ## Production Deployment
 
 Code Snapper API is packaged as a Docker container for easy, zero-ops deployment. Pull the official image or build your own:

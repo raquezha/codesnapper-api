@@ -3,11 +3,10 @@
   "language": "kotlin",
   "theme": "darcula",
   "darkMode": true,
-  "title": "30 Lines Test - Material Design",
+  "title": "30 Lines Test - Material (Presentation Preset)",
   "filename": "test_30_lines_material",
   "backgroundTheme": "chatgpt5",
-  "fontSize": 16,
+  "preset": "presentation",
   "fontFamily": "JetBrains Mono",
   "designSystem": "material"
 }
-

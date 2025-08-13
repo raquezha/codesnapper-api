@@ -3,10 +3,10 @@
   "language": "kotlin",
   "theme": "darcula",
   "darkMode": true,
-  "title": "15 Lines Test - Medium Code",
+  "title": "15 Lines Test - Medium Code (Default Preset)",
   "filename": "test_15_lines",
   "backgroundTheme": "chatgpt5",
-  "fontSize": 16,
-  "fontFamily": "JetBrains Mono"
+  "preset": "default",
+  "fontFamily": "JetBrains Mono",
+  "designSystem": "macos"
 }
-

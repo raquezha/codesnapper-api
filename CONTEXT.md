@@ -100,30 +100,18 @@ The project includes professional issue templates:
 - **🐛 Bug Report** - Issue reporting with reproduction steps
 - **⚡ Ready to Code** - Quick-win tasks with clear acceptance criteria
 
-### **GitHub Issues Ready for Creation:**
+### **GitHub Issues (Historical Planning Snapshot)**
 
-The following 11 GitHub issues are ready to be created from the project TODOs:
+(This section previously listed issues “ready for creation”. All have since been created; some are closed. Light theme support (#17) is fulfilled via `preset=light` and configuration presets (#18) is closed.)
 
-**Ready-to-Code Issues (Quick Wins - 30min to 2 hours):**
-1. **Add light theme support** - Integrate existing `ImageConfiguration.lightTheme()` method
-2. **Add configuration preset API** - Expose presentation/compact/light presets via API
-3. **Add custom calendar language support** - Special formatting for calendar events
-
-**Development & Testing Issues (2-4 hours):**
-4. **Add unit and integration tests for endpoints** - Comprehensive test coverage
-5. **Add download and preview URL functionality** - Image storage and retrieval via URLs
-6. **Build a frontend playground** - Web interface for testing API interactively
-
-**Production & Infrastructure Issues (3-6 hours):**
-7. **Implement rate limiting and usage tracking** - API abuse prevention and metrics
-8. **Add pastebin-like history functionality** - Persistent image storage and browsing
-9. **Optimize Docker containerization** - Production-ready containerization
-
-**Automation & Monitoring Issues (2-4 hours):**
-10. **Add dependency update automation** - Automated PRs for dependency updates
-11. **Add performance monitoring and benchmarks** - Performance tracking and optimization
-
-These issues are ready to be created in GitHub with detailed implementation guidance, proper labels (`enhancement`, `ready-to-code`, `good first issue`), and clear acceptance criteria.
+Current live / open focus (see status section below for full list):
+- Calendar language support (#19)
+- Testing expansion (#20)
+- Download / preview URLs (#21)
+- Rate limiting & usage tracking (#23)
+- History / persistence (#24)
+- Docker optimization (#25)
+- Automation & performance (#26, #27)
 
 ## 🧰 Tech Stack
 - Language: Kotlin (Java 17 compatibility)

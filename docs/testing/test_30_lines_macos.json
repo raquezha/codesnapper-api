@@ -3,10 +3,10 @@
   "language": "kotlin",
   "theme": "darcula",
   "darkMode": true,
-  "title": "30 Lines Test - Long Code",
+  "title": "30 Lines Test - Long Code (Presentation Preset)",
   "filename": "test_30_lines",
   "backgroundTheme": "chatgpt5",
-  "fontSize": 16,
-  "fontFamily": "JetBrains Mono"
+  "preset": "presentation",
+  "fontFamily": "JetBrains Mono",
+  "designSystem": "macos"
 }
-
