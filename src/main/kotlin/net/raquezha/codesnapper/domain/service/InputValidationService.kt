@@ -65,6 +65,9 @@ class InputValidationService {
         // Validate design system
         validateDesignSystem(request.designSystem, errors)
 
+        // Validate background theme
+        validateBackgroundTheme(request.backgroundTheme, errors)
+
         // New preset validation
         validatePreset(request.preset, errors)
 
@@ -164,6 +167,23 @@ class InputValidationService {
                         "Unsupported design system: $designSystem." +
                             " Supported design systems: ${SUPPORTED_DESIGN_SYSTEMS.joinToString(", ")}",
                     code = "UNSUPPORTED_DESIGN_SYSTEM",
+                ),
+            )
+        }
+    }
+
+    private fun validateBackgroundTheme(
+        backgroundTheme: String?,
+        errors: MutableList<ValidationError>,
+    ) {
+        if (!backgroundTheme.isNullOrBlank() && !SUPPORTED_THEMES.contains(backgroundTheme.lowercase())) {
+            errors.add(
+                ValidationError(
+                    field = "backgroundTheme",
+                    message =
+                        "Unsupported background theme: $backgroundTheme. " +
+                            "Supported themes: ${SUPPORTED_THEMES.joinToString(", ")}",
+                    code = "UNSUPPORTED_BACKGROUND_THEME",
                 ),
             )
         }

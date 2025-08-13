@@ -33,6 +33,20 @@ fun Application.configureRouting() {
 
         post("/snap") {
             try {
+                // Validate content type first
+                val contentType = call.request.contentType()
+                if (contentType?.match(ContentType.Application.Json) != true) {
+                    call.respond(
+                        HttpStatusCode.UnsupportedMediaType,
+                        ErrorResponse(
+                            error = "Unsupported Media Type",
+                            message = "Content-Type must be application/json",
+                            code = "UNSUPPORTED_MEDIA_TYPE",
+                        ),
+                    )
+                    return@post
+                }
+
                 // Parse request with proper error handling
                 val snapRequest =
                     try {
