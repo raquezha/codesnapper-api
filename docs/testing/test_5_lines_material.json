@@ -8,6 +8,7 @@
   "backgroundTheme": "chatgpt5",
   "fontSize": 16,
   "fontFamily": "JetBrains Mono",
-  "designSystem": "material"
+  "designSystem": "material",
+  "preset": "light"
 }
 

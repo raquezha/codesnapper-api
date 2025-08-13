@@ -13,7 +13,8 @@ data class SnapRequest(
     val code: String,
     val language: String,
     val theme: String? = "darcula",
-    val darkMode: Boolean = true, // retained for backward compatibility (syntax highlighting darkness)
+    // retained for backward compatibility (syntax highlighting darkness)
+    val darkMode: Boolean = true,
     // Unified configuration preset: "default", "light", "presentation", "compact"
     val preset: String? = null,
     // Optional title for the code window
