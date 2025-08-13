@@ -211,3 +211,36 @@ Special handling for calendar events and structured data:
 This API is production-ready and actively maintained. The codebase follows industry best practices with comprehensive testing and quality assurance measures in place.
 
 For technical implementation details, see [CONTEXT.md](CONTEXT.md).
+
+## Development & Contributing
+
+### Quick Start Development
+```bash
+git clone https://github.com/raquezha/codesnapper-api.git
+cd codesnapper-api
+./gradlew run
+```
+
+### GitHub Issue Workflow
+This project uses a **smart issue-aware development workflow** for contributors:
+
+- **Ready-to-Code Issues**: All features tracked as GitHub issues with detailed implementation guidance
+- **Clear Task Selection**: Browse issues labeled `ready-to-code` and `good first issue` for quick wins
+- **Automatic Referencing**: All commits reference GitHub issue numbers for perfect traceability
+- **Professional Templates**: Feature requests, bug reports, and ready-to-code templates available
+
+**Available Issues:**
+- **Issue #2**: Add light theme support (30-45 minutes)
+- **Issue #3**: Add configuration preset API (45-60 minutes)
+- **Issue #4**: Add unit and integration tests (2-3 hours)
+- **Issue #5**: Add download/preview URL functionality (1-2 hours)
+
+See [GitHub Issues](https://github.com/raquezha/codesnapper-api/issues) for current tasks and detailed implementation guidance.
+
+### Quality Standards
+- **Conventional Commits**: All commits follow conventional commit format
+- **Code Quality**: ktlint formatting, detekt analysis, minimum 80% test coverage
+- **Material Design Compliance**: New features must maintain 100/100 compliance score
+- **Documentation**: Update README.md, CONTEXT.md, and CHANGELOG.md for changes
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for complete development guidelines and workflow details

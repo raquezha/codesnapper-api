@@ -47,6 +47,69 @@ This project follows **industry-standard development practices** with GitHub Act
 - Update CONTEXT.md for architectural changes
 - See CONTRIBUTING.md for full workflow details
 
+## 🚀 **Smart Hybrid Issue-Aware Workflow**
+
+This project uses a **smart hybrid workflow** that combines manual task selection with automated GitHub issue management for optimal development efficiency.
+
+### **How It Works:**
+
+1. **GitHub Issues as Source of Truth**: All TODOs and features are tracked as GitHub issues with detailed implementation guidance
+2. **Smart Issue Discovery**: When working on features, GitHub CLI automatically searches for related issues
+3. **Issue-Aware Development**: All commits reference GitHub issue numbers for perfect traceability
+4. **Automatic Issue Closing**: Issues close automatically when PRs are merged with proper references
+
+### **Development Workflow:**
+
+**You say**: "Let's work on light theme support"
+
+**AI automatically**:
+```bash
+# 1. Search for related GitHub issues
+gh issue list --search "light theme"
+
+# 2. Show matched issue with details
+# Found Issue #2: "Add light theme support" - ready to code!
+
+# 3. You confirm: "Yes, let's work on #2"
+
+# 4. Implementation with proper issue references
+git commit -m "feat: add lightTheme parameter to SnapRequest (refs #2)"
+git commit -m "feat: integrate ImageConfiguration.lightTheme() (refs #2)"
+git commit -m "docs: update API docs with light theme (closes #2)"
+```
+
+### **Smart Commit Referencing:**
+
+All commits automatically reference GitHub issues using these patterns:
+- `(refs #2)` - References issue for tracking
+- `(closes #2)` - Closes issue when PR merges
+- `(fixes #2)` - Fixes bug issue when PR merges
+
+### **Benefits:**
+
+✅ **Perfect Traceability** - Every change links to a specific requirement
+✅ **Automatic Issue Management** - Issues close when features complete
+✅ **Contributor Friendly** - Clear, detailed tasks ready to implement
+✅ **Project Transparency** - See progress on GitHub Projects board
+✅ **Professional Development** - Enterprise-grade workflow practices
+
+### **GitHub Issue Templates:**
+
+The project includes professional issue templates:
+- **🚀 Feature Request** - New feature suggestions with implementation details
+- **🐛 Bug Report** - Issue reporting with reproduction steps
+- **⚡ Ready to Code** - Quick-win tasks with clear acceptance criteria
+
+### **Available GitHub Issues:**
+
+Current ready-to-code issues include:
+- **#2**: Add light theme support (30-45 minutes)
+- **#3**: Add configuration preset API (45-60 minutes)
+- **#4**: Add unit and integration tests (2-3 hours)
+- **#5**: Add download/preview URL functionality (1-2 hours)
+
+**To work on any issue**: Simply mention the feature name and the AI will automatically find and reference the appropriate GitHub issue throughout development.
+
 ## 🧰 Tech Stack
 - Language: Kotlin (Java 17 compatibility)
 - Framework: Ktor (Web + REST API)
