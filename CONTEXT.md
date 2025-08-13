@@ -481,25 +481,22 @@ Reports are generated in `build/reports/` directory and `docs/testing/` for Mate
 
 ### **Current GitHub Issues Status:**
 
-✅ **All 11 GitHub issues successfully created** (Issues #17 to #27):
+✅ **Configuration Presets Implemented (Issue #18 Closed)**
+Light, presentation, and compact presets are now available via the `preset` parameter. The light theme support requested in **Issue #17** is fully satisfied by using `"preset":"light"` and issue #17 has been closed as covered by #18.
 
-**Ready-to-Code Issues (Quick Wins - 30min to 2 hours):**
-- **Issue #17**: Add light theme support - Integrate existing `ImageConfiguration.lightTheme()` method
-- **Issue #18**: Add configuration preset API - Expose presentation/compact/light presets via API
-- **Issue #19**: Add custom calendar language support - Special formatting for calendar events
+✅ **Closed**:
+- #18 Configuration preset API (includes light theme)
+- #17 Light theme support (covered by preset=light)
 
-**Development & Testing Issues (2-4 hours):**
-- **Issue #20**: Add unit and integration tests for endpoints - Comprehensive test coverage
-- **Issue #21**: Add download and preview URL functionality - Image storage and retrieval via URLs
-- **Issue #22**: Build a frontend playground - Web interface for testing API interactively
-
-**Production & Infrastructure Issues (3-6 hours):**
-- **Issue #23**: Implement rate limiting and usage tracking - API abuse prevention and metrics
-- **Issue #24**: Add pastebin-like history functionality - Persistent image storage and browsing
-- **Issue #25**: Optimize Docker containerization - Production-ready containerization
-
-**Automation & Monitoring Issues (2-4 hours):**
-- **Issue #26**: Add dependency update automation - Automated PRs for dependency updates
-- **Issue #27**: Add performance monitoring and benchmarks - Performance tracking and optimization
+🔄 **Open**:
+- #19 Custom calendar language support
+- #20 Unit and integration tests for endpoints
+- #21 Download & preview URL functionality
+- #22 Frontend playground
+- #23 Rate limiting & usage tracking
+- #24 Pastebin-like history
+- #25 Docker containerization optimization
+- #26 Dependency update automation
+- #27 Performance monitoring & benchmarks
 
 **To work on any issue**: Simply mention the feature name (e.g., "Let's work on light theme support") and the AI will automatically find and reference the appropriate GitHub issue (#17) throughout development.
