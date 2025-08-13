@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Configuration Presets**: Added `preset` request parameter supporting `default`, `light`, `presentation`, and `compact` base configurations (refs #18). Users can still override individual dimensions, typography, and colors.
+
 ### In Progress
 - **Comprehensive Testing Infrastructure** - Unit and integration tests for all endpoints with mocking, fixtures, and API contract validation
 
@@ -16,7 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Frontend playground for interactive code testing
 - Pastebin-like history for saved snippets
 - Calendar language support for structured data formatting
-- Configuration presets (compact, presentation, light theme)
 
 ## [0.0.1-alpha] - 2025-08-12
 
@@ -83,4 +85,3 @@ While labeled as alpha, this release includes production-grade features:
 - Docker containerization
 - CI/CD automation
 - Performance optimization
-
