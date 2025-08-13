@@ -63,21 +63,30 @@ class GenerateCodeImageUseCase(
     }
 
     private fun createImageConfiguration(request: SnapRequest): ImageConfiguration {
+        // Determine base configuration from preset (default, light, presentation, compact)
+        val base =
+            when (request.preset?.lowercase()) {
+                "light" -> ImageConfiguration.lightTheme()
+                "presentation" -> ImageConfiguration.presentation()
+                "compact" -> ImageConfiguration.compact()
+                else -> ImageConfiguration.default()
+            }
+
         return ImageConfiguration(
-            width = request.width ?: ImageConfiguration.default().width,
-            height = request.height ?: ImageConfiguration.default().height,
-            fontSize = request.fontSize ?: ImageConfiguration.default().fontSize,
-            fontFamily = request.fontFamily ?: ImageConfiguration.default().fontFamily,
-            padding = request.padding ?: ImageConfiguration.default().padding,
-            backgroundColor = request.backgroundColor ?: ImageConfiguration.default().backgroundColor,
-            textColor = request.textColor ?: ImageConfiguration.default().textColor,
-            lineHeight = request.lineHeight ?: ImageConfiguration.default().lineHeight,
+            width = request.width ?: base.width,
+            height = request.height ?: base.height,
+            fontSize = request.fontSize ?: base.fontSize,
+            fontFamily = request.fontFamily ?: base.fontFamily,
+            padding = request.padding ?: base.padding,
+            backgroundColor = request.backgroundColor ?: base.backgroundColor,
+            textColor = request.textColor ?: base.textColor,
+            lineHeight = request.lineHeight ?: base.lineHeight,
             // Pass through the optional title
             title = request.title,
             // Parse and apply the background theme
             backgroundTheme = BackgroundTheme.fromString(request.backgroundTheme),
             // Pass through the design system choice
-            designSystem = request.designSystem ?: "macos",
+            designSystem = request.designSystem ?: base.designSystem,
         )
     }
 }

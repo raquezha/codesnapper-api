@@ -55,6 +55,7 @@ Returns a high-quality PNG image with proper syntax highlighting and professiona
 | `height` | number | Image height (auto-calculated if omitted) |
 | `fontSize` | number | Font size in pixels |
 | `fontFamily` | string | Font family name |
+| `preset` | string | Optional: default | light | presentation | compact (applies base layout) |
 
 ### Supported Languages
 
@@ -73,6 +74,27 @@ Returns a high-quality PNG image with proper syntax highlighting and professiona
 **cyberpunk** Electric purple and pink gradients
 **sunset** Warm orange to pink gradient
 **ocean** Deep blue gradient depths
+
+### Presets
+
+Use a preset to quickly apply a base layout (you can still override width, height, colors, etc.).
+
+| Preset | Description |
+|--------|-------------|
+| `default` | Standard dark configuration |
+| `light` | Light background + dark text |
+| `presentation` | 1920x1080, larger font (24px), extra padding |
+| `compact` | 800x600, smaller font (14px), reduced padding |
+
+Example:
+```json
+{
+  "code": "println(\"Hello\")",
+  "language": "kotlin",
+  "preset": "presentation",
+  "designSystem": "material"
+}
+```
 
 ## Development
 
@@ -122,17 +144,3 @@ Planned improvements include:
 - Rate limiting and usage tracking
 - Interactive frontend playground
 - Pastebin-style history for saved snippets
-- Configuration presets (compact, presentation, light themes)
-
-## Development & Contributing
-
-For full development guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Quick start:
-```bash
-git clone https://github.com/raquezha/codesnapper-api.git
-cd codesnapper-api
-./gradlew run
-```
-
-Browse ready-to-code issues on GitHub to get started: https://github.com/raquezha/codesnapper-api/issues

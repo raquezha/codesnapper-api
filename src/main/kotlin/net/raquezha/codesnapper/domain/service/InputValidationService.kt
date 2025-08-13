@@ -43,6 +43,8 @@ class InputValidationService {
 
         private val SUPPORTED_DESIGN_SYSTEMS =
             setOf("macos", "material")
+
+        private val SUPPORTED_PRESETS = setOf("default", "light", "presentation", "compact")
     }
 
     /**
@@ -62,6 +64,9 @@ class InputValidationService {
 
         // Validate design system
         validateDesignSystem(request.designSystem, errors)
+
+        // New preset validation
+        validatePreset(request.preset, errors)
 
         // Validate optional image configuration parameters
         request.width?.let { validateWidth(it, errors) }
@@ -161,6 +166,25 @@ class InputValidationService {
                     code = "UNSUPPORTED_DESIGN_SYSTEM",
                 ),
             )
+        }
+    }
+
+    private fun validatePreset(
+        preset: String?,
+        errors: MutableList<ValidationError>,
+    ) {
+        if (!preset.isNullOrBlank()) {
+            if (!SUPPORTED_PRESETS.contains(preset.lowercase())) {
+                errors.add(
+                    ValidationError(
+                        field = "preset",
+                        message = "Unsupported preset: $preset. Supported presets: ${SUPPORTED_PRESETS.joinToString(
+                            ", ",
+                        )}",
+                        code = "UNSUPPORTED_PRESET",
+                    ),
+                )
+            }
         }
     }
 

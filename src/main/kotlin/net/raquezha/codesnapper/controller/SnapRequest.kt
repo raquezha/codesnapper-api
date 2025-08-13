@@ -13,7 +13,9 @@ data class SnapRequest(
     val code: String,
     val language: String,
     val theme: String? = "darcula",
-    val darkMode: Boolean = true,
+    val darkMode: Boolean = true, // retained for backward compatibility (syntax highlighting darkness)
+    // Unified configuration preset: "default", "light", "presentation", "compact"
+    val preset: String? = null,
     // Optional title for the code window
     val title: String? = null,
     // Optional custom filename (without extension)
@@ -22,7 +24,7 @@ data class SnapRequest(
     val backgroundTheme: String? = "darcula",
     // Design system choice: "macos" or "material"
     val designSystem: String? = "macos",
-    // Optional image configuration parameters
+    // Optional image configuration parameters (override preset)
     val width: Int? = null,
     val height: Int? = null,
     val fontSize: Int? = null,
