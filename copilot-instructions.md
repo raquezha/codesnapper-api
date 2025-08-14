@@ -336,3 +336,60 @@ git commit -m "docs: update commit rule in copilot instructions\n- Clarified tha
 - Follow conventional commit format: `type: description`
 - Common types: feat, fix, docs, style, refactor, test, chore
 - For multi-line commits, use proper body formatting with blank line after summary
+
+## Copilot Pro Usage & Etiquette
+- Write clear, concise prompts for Copilot to maximize suggestion quality.
+- Always review Copilot-generated code for correctness, security, and style.
+- Use Copilot for incremental changes; refine output manually as needed.
+- Provide feedback to Copilot by editing suggestions and re-prompting.
+- Trust but verify: never blindly accept Copilot code, especially for critical logic or security-sensitive areas.
+
+## Onboarding Checklist for New Contributors
+- Read copilot-instructions.md, README.md, and CONTRIBUTING.md.
+- Set up your IDE with recommended plugins (Kotlin, Ktor, Koin, Copilot).
+- Run tests and automation scripts to verify your environment.
+- Review CI/CD workflow files in .github/workflows/.
+- Familiarize yourself with code style, commit, and PR conventions.
+
+## Code Review Standards
+- Check for logic errors, code style, and architectural consistency.
+- Ensure all code (including Copilot-generated) is readable, maintainable, and tested.
+- Validate commit messages against .commitlintrc.json and project rules.
+- Review for security issues, proper error handling, and input validation.
+- Require at least one approving review before merging PRs.
+
+## Security Standards
+- Follow OWASP Top 10 guidelines for web application security.
+- Never commit secrets or sensitive data; use environment variables.
+- Regularly update dependencies and review for vulnerabilities.
+- Validate all user input and sanitize outputs.
+- Use secure defaults for CORS, headers, and authentication.
+
+## CI/CD Best Practices
+- All code must pass linting, static analysis, and tests before merge.
+- Use conventional commit messages for automated changelog generation.
+- Automate releases and Docker builds via GitHub Actions.
+- Document rollback procedures and release notes in CHANGELOG.md.
+
+## Key File References
+- **README.md**: Project overview, setup, and API usage.
+- **CHANGELOG.md**: User-facing changes and release history.
+- **CONTRIBUTING.md**: Development workflow and PR process.
+- **SECURITY.md**: Security practices and disclosure policy.
+- **copilot-instructions.md**: Coding, commit, and workflow standards.
+- **.commitlintrc.json**: Commit message enforcement.
+- **.editorconfig, .ktlint, detekt.yml**: Code style and static analysis.
+- **.github/workflows/**: CI/CD automation.
+- **scripts/**: Automation scripts for testing and compliance.
+- **docs/testing/**: Test data and compliance reports.
+
+## Developer Experience Tips
+- Use automation scripts in scripts/ to streamline testing and compliance.
+- Configure your IDE for Kotlin, Ktor, and Copilot integration.
+- Use GitHub Codespaces or Docker for consistent dev environments.
+- Troubleshoot common issues by checking logs, CI output, and documentation.
+
+## Documentation Update Workflow
+- Update copilot-instructions.md and other docs for any new conventions or major changes.
+- Review documentation changes in PRs; require approval before merging.
+- Keep documentation concise, actionable, and up-to-date.
