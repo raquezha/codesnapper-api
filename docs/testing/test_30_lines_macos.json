@@ -5,7 +5,7 @@
   "darkMode": true,
   "title": "30 Lines Test - Long Code (Presentation Preset)",
   "filename": "test_30_lines",
-  "backgroundTheme": "chatgpt5",
+  "backgroundTheme": "darcula",
   "preset": "presentation",
   "fontFamily": "JetBrains Mono",
   "designSystem": "macos"

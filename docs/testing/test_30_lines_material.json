@@ -5,7 +5,7 @@
   "darkMode": true,
   "title": "30 Lines Test - Material (Presentation Preset)",
   "filename": "test_30_lines_material",
-  "backgroundTheme": "chatgpt5",
+  "backgroundTheme": "darcula",
   "preset": "presentation",
   "fontFamily": "JetBrains Mono",
   "designSystem": "material"

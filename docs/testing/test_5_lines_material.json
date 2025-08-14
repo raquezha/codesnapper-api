@@ -5,7 +5,7 @@
   "darkMode": true,
   "title": "5 Lines Test - Material (Light Preset)",
   "filename": "test_5_lines_material",
-  "backgroundTheme": "chatgpt5",
+  "backgroundTheme": "darcula",
   "preset": "light",
   "fontFamily": "JetBrains Mono",
   "designSystem": "material"

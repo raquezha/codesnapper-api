@@ -68,25 +68,35 @@ run_test() {
         design_system="Unknown"
     fi
 
-    # Make API call and save result
+    # Make API call and save result to temp file
     local output_file="$OUTPUT_DIR/${test_name}.png"
+    local tmp_output_file="${output_file}.tmp"
+    local headers_file="${output_file}.headers"
 
-    if curl -X POST "$SERVER_URL/snap" \
+    curl -X POST "$SERVER_URL/snap" \
         -H "Content-Type: application/json" \
         -d @"$test_file" \
-        --output "$output_file" \
-        --silent --show-error; then
+        --silent --show-error \
+        --output "$tmp_output_file" \
+        --dump-header "$headers_file" > /dev/null
 
-        # Check if file was created and has content
-        if [ -f "$output_file" ] && [ -s "$output_file" ]; then
-            local file_size=$(du -h "$output_file" | cut -f1)
-            echo -e "${GREEN}✅ $test_name ($design_system) - Generated: $file_size${NC}"
-        else
-            echo -e "${RED}❌ $test_name ($design_system) - File empty or not created${NC}"
-            return 1
-        fi
+    local http_status=$(awk 'NR==1{print $2}' "$headers_file")
+    local content_type=$(awk -F': ' '/^Content-Type:/ {print $2}' "$headers_file" | tr -d '\r')
+
+    if [[ "$http_status" == "200" && "$content_type" == "image/png" ]]; then
+        mv "$tmp_output_file" "$output_file"
+        rm -f "$headers_file"
+        local file_size=$(du -h "$output_file" | cut -f1)
+        echo -e "${GREEN}✅ $test_name ($design_system) - Generated: $file_size${NC}"
     else
-        echo -e "${RED}❌ $test_name ($design_system) - API call failed${NC}"
+        echo -e "${RED}❌ $test_name ($design_system) - API call failed or did not return PNG (status: $http_status, content-type: $content_type)${NC}"
+        if [ -f "$tmp_output_file" ]; then
+            echo -e "${YELLOW}--- Response Body ---${NC}"
+            head -20 "$tmp_output_file"
+            echo -e "${YELLOW}---------------------${NC}"
+            rm -f "$tmp_output_file"
+        fi
+        rm -f "$headers_file"
         return 1
     fi
 }

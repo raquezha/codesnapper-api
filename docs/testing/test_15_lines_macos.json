@@ -5,7 +5,7 @@
   "darkMode": true,
   "title": "15 Lines Test - Medium Code (Default Preset)",
   "filename": "test_15_lines",
-  "backgroundTheme": "chatgpt5",
+  "backgroundTheme": "darcula",
   "preset": "default",
   "fontFamily": "JetBrains Mono",
   "designSystem": "macos"
