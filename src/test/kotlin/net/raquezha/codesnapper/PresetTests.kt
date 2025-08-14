@@ -57,7 +57,7 @@ class PresetTests {
     }
 
     @Test
-    fun presentationPresetProducesValidImage() =
+    fun `should produce valid image for presentation preset`() =
         testApplication {
             application { module() }
             val response =
@@ -81,7 +81,7 @@ class PresetTests {
         }
 
     @Test
-    fun compactPresetProducesValidImage() =
+    fun `should produce valid image for compact preset`() =
         testApplication {
             application { module() }
             val response =
@@ -105,7 +105,7 @@ class PresetTests {
         }
 
     @Test
-    fun overrideWidthHeightWithPreset() =
+    fun `should override width and height when preset is specified`() =
         testApplication {
             application { module() }
             val response =
@@ -130,7 +130,7 @@ class PresetTests {
         }
 
     @Test
-    fun invalidPresetRejected() =
+    fun `should reject invalid preset with proper error message`() =
         testApplication {
             application { module() }
             val response =
@@ -154,7 +154,7 @@ class PresetTests {
         }
 
     @Test
-    fun fontSizeOverrideOnPresentation() =
+    fun `should allow font size override on presentation preset`() =
         testApplication {
             application { module() }
             val response =
@@ -175,7 +175,7 @@ class PresetTests {
         }
 
     @Test
-    fun defaultPresetSameAsNoPresetDimensions() =
+    fun `should produce same dimensions for default preset and no preset`() =
         testApplication {
             application { module() }
             val respNoPreset =
@@ -208,7 +208,7 @@ class PresetTests {
         }
 
     @Test
-    fun lightPresetProducesValidImage() =
+    fun `should produce valid image for light preset`() =
         testApplication {
             application { module() }
             val response =
@@ -230,7 +230,7 @@ class PresetTests {
         }
 
     @Test
-    fun defaultPresetProducesValidImage() =
+    fun `should produce valid image for default preset`() =
         testApplication {
             application { module() }
             val response =
@@ -254,7 +254,7 @@ class PresetTests {
         }
 
     @Test
-    fun lightPresetWithOverrides() =
+    fun `should allow overrides with light preset`() =
         testApplication {
             application { module() }
             val response =
@@ -279,7 +279,7 @@ class PresetTests {
         }
 
     @Test
-    fun presetWithDifferentDesignSystemAndThemeProducesValidImage() =
+    fun `should produce valid image with different design system and theme`() =
         testApplication {
             application { module() }
             val response =
@@ -305,7 +305,7 @@ class PresetTests {
         }
 
     @Test
-    fun presetsProduceDifferentSizes() =
+    fun `should produce different sizes for different presets`() =
         testApplication {
             application { module() }
 
@@ -350,7 +350,7 @@ class PresetTests {
         }
 
     @Test
-    fun presetWithMinMaxEdgeCases() =
+    fun `should handle min and max edge cases for presets`() =
         testApplication {
             application { module() }
             // Test with larger minimum dimensions that should be accepted

@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 
 class ApplicationTest {
     @Test
-    fun testHealthCheck() =
+    fun `should return OK status for health check`() =
         testApplication {
             application {
                 module()
@@ -21,7 +21,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpoint() =
+    fun `should generate PNG image when given valid snap request`() =
         testApplication {
             application {
                 module()
@@ -44,7 +44,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointInvalidInput() =
+    fun `should return bad request when snap request has invalid input`() =
         testApplication {
             application {
                 module()
@@ -64,7 +64,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointLargeCodeSnippet() =
+    fun `should process large code snippet without error`() =
         testApplication {
             application {
                 module()
@@ -97,7 +97,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointMacOSDesignSystem() =
+    fun `should generate valid snap for MacOS design system`() =
         testApplication {
             application {
                 module()
@@ -118,7 +118,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointMissingParameters() =
+    fun `should return bad request when snap request is missing parameters`() =
         testApplication {
             application {
                 module()
@@ -137,7 +137,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointUnsupportedBackgroundTheme() =
+    fun `should return bad request for unsupported background theme`() =
         testApplication {
             application {
                 module()
@@ -158,7 +158,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointCustomFilename() =
+    fun `should allow custom filename in snap request`() =
         testApplication {
             application {
                 module()
@@ -183,7 +183,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointAutoSizing() =
+    fun `should auto size snap image based on content`() =
         testApplication {
             application {
                 module()
@@ -204,7 +204,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointEmptyCode() =
+    fun `should return bad request when code is empty`() =
         testApplication {
             application {
                 module()
@@ -224,7 +224,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointDefaultFilename() =
+    fun `should use default filename when none is provided`() =
         testApplication {
             application {
                 module()
@@ -245,7 +245,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointValidLightTheme() =
+    fun `should generate valid snap with light theme`() =
         testApplication {
             application {
                 module()
@@ -268,7 +268,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointValidDarkTheme() =
+    fun `should generate valid snap with dark theme`() =
         testApplication {
             application {
                 module()
@@ -291,7 +291,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointValidMacOSTheme() =
+    fun `should generate valid snap for MacOS with darcula theme`() =
         testApplication {
             application {
                 module()
@@ -313,7 +313,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointValidPresetLight() =
+    fun `should generate valid snap with preset light theme`() =
         testApplication {
             application {
                 module()
@@ -335,7 +335,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointCalendarLanguage() =
+    fun `should generate valid snap for Java code with calendar language`() =
         testApplication {
             application {
                 module()
@@ -356,7 +356,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointFullPayload() =
+    fun `should process full payload for snap request`() =
         testApplication {
             application {
                 module()
@@ -388,7 +388,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointUnsupportedContentType() =
+    fun `should return unsupported media type for invalid content type`() =
         testApplication {
             application {
                 module()
@@ -402,7 +402,7 @@ class ApplicationTest {
         }
 
     @Test
-    fun testSnapEndpointPerformanceLargePayload() =
+    fun `should handle performance test with large payload`() =
         testApplication {
             application {
                 module()
