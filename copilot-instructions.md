@@ -302,3 +302,37 @@ class ImageRendererFactory {
 - **Preset System**: Easy addition of new presets
 - **Theme Support**: Extensible theme system
 - **Output Formats**: Architecture supports multiple output formats
+
+## 🚨 CRITICAL COMMIT RULE - NEVER FORGET!
+
+**ALWAYS USE SINGLE TERMINAL COMMAND FOR COMMIT MESSAGES**
+
+❌ NEVER break commit messages across multiple terminal lines like this:
+```
+git commit -m "feat: add enterprise security
+- Added rate limiting
+- Added security headers"
+```
+
+✅ ALWAYS use single terminal command (multi-line content is OK with proper formatting):
+```bash
+# Single line commit message (preferred for simplicity)
+git commit -m "feat: add enterprise security and performance infrastructure"
+
+# Multi-line commit message in single terminal command using \n escape sequences
+git commit -m "docs: update commit rule in copilot instructions\n- Clarified that multi-line commit messages are allowed\n- Must be formatted as single terminal command (not broken across lines)\n- Added examples of both single-line and multi-line formats\n- Emphasized terminal command execution safety"
+```
+
+**WHY:** Breaking commit commands across multiple terminal lines with unescaped quotes breaks terminal command execution. This has caused failed commits that appeared successful but weren't actually pushed.
+
+**THE CORRECT WAY:** Use `\n` escape sequences within a single terminal command to create multi-line commit messages.
+
+**ENFORCEMENT:** Every git commit must be a single terminal command to ensure proper execution and successful commits.
+
+## Additional Guidelines
+
+- Always validate commit success by checking the actual git output
+- Use descriptive commit messages (single-line or multi-line both OK)
+- Follow conventional commit format: `type: description`
+- Common types: feat, fix, docs, style, refactor, test, chore
+- For multi-line commits, use proper body formatting with blank line after summary
