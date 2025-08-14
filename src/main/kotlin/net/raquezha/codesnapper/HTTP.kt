@@ -10,8 +10,20 @@ fun Application.configureHTTP() {
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
+        allowMethod(HttpMethod.Get)
+        allowMethod(HttpMethod.Post)
         allowHeader(HttpHeaders.Authorization)
-        allowHeader("MyCustomHeader")
-        anyHost()
+        allowHeader(HttpHeaders.ContentType)
+        allowHeader(HttpHeaders.Accept)
+        allowHeader("X-Requested-With")
+
+        // 🔒 SECURITY FIX: Replace anyHost() with specific allowed origins
+        allowHost("localhost:3000") // Local development
+        allowHost("localhost:8080") // Local testing
+        // Add your production domains here
+        // allowHost("your-frontend-domain.com", schemes = listOf("https"))
+
+        allowCredentials = false // Disable credentials for security
+        maxAgeInSeconds = 86400 // 24 hours cache
     }
 }
